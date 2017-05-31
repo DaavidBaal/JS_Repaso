@@ -1,5 +1,6 @@
 /**********************************************************
-Funciones "externas" invocadas desde el formulario en el proceso de validación
+Funciones "externas" invocadas desde el formulario
+en el proceso de validación
 ***********************************************************/
 function validaDatos()
 {
@@ -13,145 +14,354 @@ else
 function actualizarColor(Elemento)
 {
 //vuelve a cambiar los colores del elemento de error a los originales
-with (window.document.forms.formulario)
+with (window.document.forms.encuesta)
 	{
-	Elemento.style.color='red';
+	Elemento.style.color='black';
 	Elemento.style.backgroundColor='white';	
 	}
 }
 
+/**********************************************************
+Funciones "internas" invocadas por otras funciones 
+en el proceso de validación
+***********************************************************/
 
+function validaCorreo()
+{
+//window es el objeto del que parten todos los demas y es innecesario ponerlo
+//window.document.forms[0].Correo.value.indexOf('@') serÃ­a el formulario 0, el primero y Ãºnico que tenemos
+if(window.document.forms.encuesta.Correo.value.indexOf('@')<0)
+	{
+	alert('Correo incorrecto '+document.forms.encuesta.Correo.value);
+	errorValidando(document.forms.encuesta.Correo);
+	return false;
+	}
+else
+	{
+	//Actualizar(document.forms.encuesta.Correo);
+	return true;
+	}
+}
 
-class Formulario {
-    constructor(){
-        this.oCorreo = document.querySelector("#Correo"),
-        this.oClave1 = document.querySelector("#Clave1"),
-        this.oClave2 = document.querySelector("#Clave2"),
-        this.oNombre = document.querySelector("Nombre"),
-        this.oApellido1 = document.querySelector("Apellido1"),
-        this.oApellido2 = document.querySelector("Apellido2")
-        this.oCond = document.querySelector("#Música"),
-		this.oCond1 = document.querySelector("#Viajes"),
-        this.oCond2 = document.querySelector("#condiciones_2"),
-		this.oCond3 = document.querySelector("#condiciones_3"),
-        this.oParrafo = document.querySelector("#parrafo_1"), // referencia del párrafo donde escribir
-		this.aSalida = []
-		;	
+function validaClave()
+{
+/*with (window.document.forms.encuesta)
+con este with nos ahorramos poner la ruta completa de los elementos
+  de nuestro fomulario encuesta  habrÃ­a que poner todo a lo que abarque entre llaves {}
+   sino solo vale para el siguiente elemento
+  en nuestro caso afecta a Clave2 porque esta concatenado por los if ... else*/
+if (   Clave1.value=='' )
+	{
+	alert('No se ha introducido la Clave');
+	errorValidando(document.forms.encuesta.Clave1);
+	return false;
+	}
+else
+	{
+	//Actualizar(document.forms.encuesta.Clave1);
+ 	if ( Clave1.value != Clave2.value )
+		{
+		alert('Las claves deben ser iguales;');
+		errorValidando(document.forms.encuesta.Clave2);
+		return false;
 		}
+ 	else
+		{
+		//Actualizar(document.forms.encuesta.Clave2);
+		return true;
+		}
+	}
+}
 
-		getTextos () {
-		this.aSalida = [
-				{etiqueta : "Correo", valor : this.oCorreo.value},
-				{etiqueta : "Clave1", valor : this.oClave1.value},
-				{etiqueta : "Clave2", valor : this.oClave2.value},
-				{etiqueta : "Nombre", valor : this.oNombre.value},
-				{etiqueta : "Apellido1", valor : this.oApellido1.value},
-                {etiqueta : "Apellido2", valor : this.oApellido2.value},
-			]
-		}; //Fin de la función getTexto
-    
-       // getRRadiobuttons () {				
-		//	for(let i=0; i < this.aJoomla.length; i++) {
-		//		if (this.aJoomla[i].checked) {
-		//			this.aSalida[this.aSalida.length] = {
-		//				etiqueta : "Preparado para dar Joomla!", valor : this.aJoomla[i].value.toUpperCase()}
-		//		};
-		//	};
-//		}; //Fin de la función getRRadiobuttons
+function validaNombre()
+{
+// with (window.document.forms.encuesta)
+if (Nombre.value=='')
+	{
+	alert('No se ha introducido el Nombre');
+	errorValidando(document.forms.encuesta.Nombre);
+	return false;
+	}
+else
+	{
+	//Actualizar(document.forms.encuesta.Nombre);
+	if (Apellido1.value=='')
+		{
+		alert('No se ha introducido el Apellido1');
+		errorValidando(document.forms.encuesta.Apellido1);
+		return false;
+		}
+	else
+		{
+		//Actualizar(document.forms.encuesta.Apellido1);
+		if (Apellido2.value=='')
+			{
+			alert('No se ha introducido el Apellido2');
+			errorValidando(document.forms.encuesta.Apellido2);
+			return false;
+			}
+		else
+			{
+			//Actualizar(document.forms.encuesta.Apellido2);
+			return true;
+			}
+		}
+	}
+}
 
-		getCheckbox () {
-			if (this.oCond.checked) {
-				this.aSalida[this.aSalida.length] = {etiqueta : "Música", valor : "SI"}
-			} 
-			else{
-				this.aSalida[this.aSalida.length] =  {etiqueta : "", valor : ""};		
-			};	
-			if (this.oCond1.checked) {
-				this.aSalida[this.aSalida.length] = {etiqueta : "Viajes", valor : ""}
-			} 
-			else{
-				this.aSalida[this.aSalida.length] =  {etiqueta : "", valor : ""}	
-			};
-		}; //Fin de la función getCheckbox
+function validaFecha()
+{
+with (window.document.forms.encuesta)
+	if ( esNumero( parseInt(dia.value), parseInt(mes.value), parseInt(anio.value) ) && 
+						comprobarFechas(dia.value,mes.value,anio.value) )
+		{
+		with (window.document.forms.encuesta)
+			{
+			//Actualizar(dia);
+			//Actualizar(mes);
+			//Actualizar(anio);
+			return true;
+			}
+		}
+	else
+		{
+		alert('Fecha incorrecta');
+		with (window.document.forms.encuesta)
+			{
+			errorValidando(dia);
+			errorValidando(mes);
+			errorValidando(anio);
+			return false;
+			}
+		}	
+}
 
-		getSelectOptions () {
-			let oOpcion = this.oOpciones.options[this.oOpciones.selectedIndex];
-			var textoSeleccionado = oOpcion.text; // Segundo valor
-			var valorSeleccionado = oOpcion.value; // 2
-			this.aSalida[this.aSalida.length] = {etiqueta : "Nivel de JavaScript", valor : textoSeleccionado} 
-		}; //Fin de la función getSelectOptions
-    recogeDatos () {
-			// Llamada a las funciones get de cada conjunto de controles
-			this.getTextos();
-			this.getRRadiobuttons();
-			this.getCheckbox();
-			this.getSelectOptions();
-			//llamada a la función que procesara el arry presentandolo en pantalla
-			this.escribeDatos ();
-		} // Fin de la funcion recogeDatos
+function comprobarFechas (dd,mm,aa)
+{
+var array_meses=new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+if(esBisiesto(aa))
+	array_meses[1]=29;
+// Lo anterior deberÃ­a ir con el if final para comprobar el dÃ­a 
+// y la funciÃ³n bisiesto solo deberÃ­a llamarla si el mes es 2 if(mm==2 && bisiesto(aa))
+if (!esAnio(aa))
+	return false;
+else
+	if (!esMes(mm))
+		return false;
+	else
+		if(dd>array_meses[mm-1] || dd<=0)
+			return false;
+		else
+			return true;
+}
 
-		escribeDatos () {
-			//ocultar formulario
-			document.querySelector("#formulario").className = "oculto";
-			//mostrar bloque div para el resultado
-			document.querySelector("#resultado").className = "bloque";
-			//incorporamos al parrafo cada línea del array		
-			for (var i = 0; i < this.aSalida.length; i++) {
-				this.oParrafo.innerHTML 		  
-					+= `<strong> ${this.aSalida[i].etiqueta} : </strong>
-					${this.aSalida[i].valor}</br>
-			`};
-		} // Fin de la funcion escribeDatos
-	} // Fin de la clase formulario
+function esNumero (d,m,a)
+{
+if ( isNaN(d) || isNaN(m) || isNaN(a) )
+	return false;
+else
+	return true;
+}
 
-	
+function esBisiesto(aa)
+{
+return ((aa%4==0 && aa%100!=0) || aa%400==0);
+}
 
-        function main() {
-            var oFormulario = {
-                oEvento: {},
-                oDatos: {},
-                oLista: document.getElementById("listaDatos"), // referencia del párrafo donde escribir
-                recogeDatos: function (oE) {
-                    // manejadora del evento submit del formulario:
-                    // disparada sólo despues de la validación HTML5
-                    this.oEvento = oE || window.evnet;
-                    var inputs = document.querySelectorAll("input[type='text']")
-                    for (var i = 0; i < inputs.length; i++) {
-                        this.oDatos[inputs[i].name] = inputs[i].value;
-                    }
-                    this.oDatos.Comentarios = document.getElementById("Comentarios").value;
-                    this.escribeDatos();
-                }, //Fin del método recogeDatos
+function esMes (mm)
+{
+return (mm > 0 && mm < 13);
+}
 
-                escribeDatos: function () {
-                    //anula el comportamiento por defecto de submit
-                    //incluida la validacion de los requireds
-                    //que ya se ha realizado para poder llegar aqui
-                    this.oEvento.preventDefault();
-                    //ocultar formulario
-                    document.getElementById("formulario").classList.add("oculto")
-                    //mostrar bloque div para el resultado
-                    document.getElementById("resultado").classList.remove("oculto");
-                    // limpiar el nodo <ul> donde se presentarán los datos
-                    this.oLista.innerHTML = "";
-                    //incorporamos a la lista cada elemento del objeto		
-                    for (var i in this.oDatos) {
-                        this.oLista.innerHTML += "<li>" + i + ": <strong>" +
-                            this.oDatos[i] + "</strong></li>";
-                    };
-                }, //Fin del método escribedatos	
-            }; // Fin del objeto oFormulario
-            
-            //document.getElementById("submit").addEventListener("click",
-            //   oFormulario.recogeDatos.bind(oFormulario));
+function esAnio (aa)
+{
+return (aa >= 1900 && aa <= 2100);
+}
 
-            // En lugar de responder al evento click del boton enviar
-            // Respondemos al evento submit del formulario, 
-            // desencadenado por el boton pero POSTERIOR
-            // al proceso de validación HTML
+function errorValidando(Elemento)
+{
+//with (window.document.forms.encuesta)
+	{
+	Elemento.style.color='silver';
+	Elemento.style.backgroundColor='green';
+	Elemento.focus();
+	}
+}
 
-            document.getElementById('formulario').addEventListener("submit", oFormulario.recogeDatos.bind(oFormulario))
+/*************************************************************
+Funciones "externas" invocadas desde el formulario
+en procesos automáticos relacionados con el formato de los campos
+o el almacenamiento de los datos
+* ***********************************************************/
+
+//cambia el correo electrónico todo a minúsculas
+function todoMinusculas(oControl)
+{
+Control.value = Control.value.toLowerCase( );
+//No recibimos ni devolvemos nada porque jugamos con el mismo objeto a través del puntero Control
+}
 
 
-                
-        } // Fin de la función main()
+//cambia a mayuscula la primera letra en nombres y apellidos
+function primeraMayuscula(Objeto_this)
+{
+var Cadena = new String ();
+Cadena = Objeto_this.value;
+//Ahora viene la funcion tal y como estaba en el ejercicio 22
+var Frase = Cadena.charAt(0).toUpperCase();
+for(i=1; i<Cadena.length; i++)
+	if(Cadena.charAt(i-1)!=' ')
+		Frase+=Cadena.charAt(i).toLowerCase();
+	else
+		Frase+=Cadena.charAt(i).toUpperCase();
+//Y volvemos a pasarle la Cadena reconstruida al objeto this que recibiamos como su atributo value
+Objeto_this.value = Frase;
+}
+
+//cambia el contenido de la lista con las asignaturas correspondientes a cada curso
+function asignaturas(Elemento)
+{
+//Elemento es una string con el nombre puesto que recibimos objeto.value
+with (window.document.forms.encuesta)
+	{
+	if(Elemento=='web')
+		{
+//Materias es un array y por tanto utilizamos la misma sintaxis que en C para manejarlo
+//DeberÃ­a coger igual comillas dobles que simples para cadenas de caracteres
+		Materias[0].text='HTML';
+		Materias[0].value=1;
+		Materias[1].text="CSS";
+		Materias[1].value=2;
+		Materias[2].text='JavaScrip';
+		Materias[2].value=3;
+		Materias[3].text="PHP";
+		Materias[3].value=4;
+		Materias[4].text="PHP Avanzado";
+		Materias[4].value=5;
+		}	
+	if(Elemento=='sistemas')
+		{
+		Materias[0].text='Shell Scripts';
+		Materias[0].value=5;
+		Materias[1].text="Linux C";
+		Materias[1].value=6;
+		Materias[2].text='MySQL';
+		Materias[2].value=7;
+		Materias[3].text="Servidores";
+		Materias[3].value=8;
+		}	
+	if(Elemento=='objeto')
+		{
+		Materias[0].text='Lenguaje C';
+		Materias[0].value=9;
+		Materias[1].text="C++";
+		Materias[1].value=10;
+		Materias[2].text='Java';
+		Materias[2].value=11;
+		Materias[3].text="Basic";
+		Materias[3].value=12;
+		}	
+	}
+}
+
+// el elemento del formulario encuesta tiene un input hidden de name ="aficion";
+// en la propiedad value de ese elemento almacenamos las aficiones pulsadas
+function recopilaAficiones()
+{
+with (window.document.forms.encuesta)
+	{
+	aficion.value='';
+	if(Musica.checked==true)
+		aficion.value+='M';
+	if(Viajar.checked==true)
+		aficion.value+='V';
+	if(Pintura.checked==true)
+		aficion.value+='P';
+	if(Foto.checked==true)
+		aficion.value+='F';
+	if(Cine.checked==true)
+		aficion.value+='C';
+	if(Lectura.checked==true)
+		aficion.value+='L';
+	if(Deporte.checked==true)
+		aficion.value+='D';
+	if(Baile.checked==true)
+		aficion.value+='B';
+	}
+}
+
+//genera al final del formulario la fecha en que este se esta rellenando
+function fechaActual(sLugar) {
+	var aDias = new Array('Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'S&aacute;bado');
+	var aMeses = new Array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
+	//Creamos una nueva instancia del objeto Date del cual su valor es la fecha y hora actual
+	var dFecha = new Date();
+	//Para obtener el aÃ±o utilizamos el mÃ©todo getYear():
+	var anio = dFecha.getYear() + 1900;
+	//getDay() devuelve 0 para domingo y asÃ­ sucesivamente
+	var diaSem = dFecha.getDay();
+	//getDate() devuleve el dÃ­a del mes
+	var diaMes = dFecha.getDate();
+	//getMonth() devuelve 0 para enero
+	var mes = dFecha.getMonth();
+	return ('En ' + sLugar + ', el ' + aDias[diaSem] + ' día ' + diaMes + ' de ' + aMeses[mes] + ' del año ' + anio);
+}
+class Formulario {
+
+        constructor () {
+			with (window.document.forms.encuesta)
+            this.oDatos = {"Nombre": "",
+                        "Apellidos": "",
+                        "Dirección": "",
+                        "Ciudad": "",
+                        "Comentarios": "",
+                };
+            this.oParrafo = document.getElementById("listaDatos");
+            // referencia del párrafo donde escribir
+
+            document.getElementById("submit").addEventListener("click",
+                this.recogeDatos.bind(this));
+
+        }
+
+        recogeDatos (oE) {
+            this.oDatos.Nombre = document.getElementById("fname").value;
+            this.oDatos.Apellidos = document.getElementById("apell").value;
+            this.oDatos.Dirección = document.getElementById("address").value;
+            this.oDatos.Ciudad = document.getElementById("city").value;
+            this.oDatos.Comentarios = document.getElementById("coment").value;
+            //llamada a la función que procesara el objeto presentandolo en pantalla
+            this.escribeDatos();
+            oE.preventDefault();
+            //anula el comportamiento por defecto de submit
+        } //Fin del método recogeDatos
+
+
+        escribeDatos () {
+            //ocultar formulario
+            document.getElementById("form_1").classList.toggle("oculto")
+            //mostrar bloque div para el resultado
+            document.getElementById("resultado").classList.toggle("oculto");
+            //incorporamos a la lista cada elemento del objeto		
+            for (var i in this.oDatos) {
+                this.oParrafo.innerHTML += "<li>" + i + ": <strong>" +
+                    this.oDatos[i] + "</strong></li>";
+            };
+        } //Fin del método escribedatos	
+
+    } // Fin de la clase Formulario
+
+    class App {
+
+        static main () {
+          
+            document.addEventListener("DOMContentLoaded", 
+            function () {
+                new Formulario()
+            }, false);
+        }
+
+    } // Fin de la clase App
+
+
+    App.main()
