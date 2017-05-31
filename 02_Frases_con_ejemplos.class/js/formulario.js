@@ -88,3 +88,8 @@ class Formulario {
 		return nResponse;
 	}
 }
+
+for (let eFrase = 0; eFrase < array.length; eFrase++) {
+    let element = array[index];
+    
+}
