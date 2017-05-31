@@ -12,3 +12,6 @@ legend{
     border: 1px solid; color:white;
 }
 
+h2{
+    display: none;
+}

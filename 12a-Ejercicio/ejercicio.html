@@ -20,11 +20,11 @@
         <h1>Ejercicio Mayúsculas y Minuscúlas</h1>
     </header>
 <article>
-    <form>
+    <form id="formulario" name="formulario" class="oculto" method="post">
         <fieldset>
-       <legend>Datos personales</legend>
-                <p><label for="cadena">Cadena:</label>
-                    <input type="text" id="fname" name="fname" size="30" placeholder="Escriba su nombre">
+       <legend>Cadena de caracteres</legend>
+                <p><label for="cadena">*</label>
+                    <input type="text" id="cadena" name="cadena"  placeholder="Escribe tu cadena">
         </fieldset>
         <fieldset>
                 <p><label></label>
@@ -34,7 +34,7 @@
     </form>
 <div id="resultado" class="oculto">
             <h2>Los datos del usuario son los siguientes</h2>
-            <ul id="listaDatos"> </ul>
+<ul id="listaDatos"> </ul>
 </div>
 
 </article>

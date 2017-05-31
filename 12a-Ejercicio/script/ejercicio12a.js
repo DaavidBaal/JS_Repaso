@@ -21,6 +21,7 @@ function info(cadena) {
  class Formulario {
             constructor() {
                 this.oDatos = {
+                    "Cadena" : "";
                 };
                 this.oParrafo = document.getElementById("listaDatos");
                 // referencia del párrafo donde escribir
@@ -28,11 +29,7 @@ function info(cadena) {
                     this.recogeDatos.bind(this));
             }
             recogeDatos(oE) {
-                this.oDatos.Nombre = document.getElementById("fname").value;
-                this.oDatos.Apellidos = document.getElementById("apell").value;
-                this.oDatos.Dirección = document.getElementById("address").value;
-                this.oDatos.Ciudad = document.getElementById("city").value;
-                this.oDatos.Comentarios = document.getElementById("coment").value;
+                this.oDatos.Cadena = document.getElementById("Cadena").value;
                 //llamada a la función que procesara el objeto presentandolo en pantalla
                 this.escribeDatos();
                 oE.preventDefault();
@@ -51,13 +48,4 @@ function info(cadena) {
                 };
             } //Fin del método escribedatos	
         } // Fin de la clase Formulario
-        class App {
-            static main() {
-
-                document.addEventListener("DOMContentLoaded",
-                    function () {
-                        new Formulario()
-                    }, false);
-            }
-        } // Fin de la clase App
-        App.main()
+ 
