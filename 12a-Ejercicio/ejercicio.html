@@ -23,18 +23,19 @@
     <form id="formulario" name="formulario" class="oculto" method="post">
         <fieldset>
        <legend>Cadena de caracteres</legend>
-                <p><label for="cadena">*</label>
-                    <input type="text" id="cadena" name="cadena"  placeholder="Escribe tu cadena">
+                <p><label for="sFrase">*</label>
+                    <input type="text" id="sFrase" name="sFrase"  placeholder="Escribe tu cadena">
         </fieldset>
         <fieldset>
-                <p><label></label>
-                    <input id="submit" type="button" value="Enviar"> 
-                    <input id="reset" type="reset" value="Borrar"></p>
+                <label for="sFecha">Escribe tu frase</label>
+                    <input id="btnComprobar" type="button" value="Comrpobar frase"> 
+                    <label></label>
+                     <input id="reset" type="button" value="Borrar"></p>
+
             </fieldset>
     </form>
-<div id="resultado" class="oculto">
-            <h2>Los datos del usuario son los siguientes</h2>
-<ul id="listaDatos"> </ul>
+<p id="sRespuesta" class="destacado"></p>
+
 </div>
 
 </article>
