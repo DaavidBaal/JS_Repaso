@@ -1,43 +1,36 @@
-
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ejercicio 12a</title>
-    <!--Link a hoja de estilos CSS-->
-    <link rel="stylesheet" href="css/ejercicio12a.css">
-     <!--Link a fichero JavaScript-->
-    <script  src="script/ejercicio12a.js"></script>
-
+	<meta name="keywords" content="web, learning, html5, css3, angularJS">
+	<meta name="author" content="Alejandro" >
+	<meta name="description" content="Ejercicios de JS">
+	<meta name="generator" content="Visual Studio Code">
+	<meta charset="UTF-8">
+	<title>Comprobar frases</title>
+	<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/ejercicio12a.css">
+	<link rel="icon" href="fav_icon.png">
 </head>
 
-<body>
-    <header>
-        <h1>Ejercicio Mayúsculas y Minuscúlas</h1>
-    </header>
-<article>
-    <form id="formulario" name="formulario" class="oculto" method="post">
-        <fieldset>
-       <legend>Cadena de caracteres</legend>
-                <p><label for="sFrase">*</label>
-                    <input type="text" id="sFrase" name="sFrase"  placeholder="Escribe tu cadena">
-        </fieldset>
-        <fieldset>
-                <label for="sFecha">Escribe tu frase</label>
-                    <input id="btnComprobar" type="button" value="Comrpobar frase"> 
-                    <label></label>
-                     <input id="reset" type="button" value="Borrar"></p>
+<body>	 	
+	<header>
+		<h1>Comprobar frases</h1>
+	</header>
+	<article>
+		<form name="formulario">
+			<label for="sFrase" id="lblNombre">Escribe una frase</label>
+			<input type="text" id="sFrase" name="sFrase">
+			<label></label>
+			<input type="button"  id="btnComprobar" value="Comprobar frase">	
+		</form>
 
-            </fieldset>
-    </form>
-<p id="sRespuesta" class="destacado"></p>
-
-</div>
-
-</article>
+		<p id="sRespuesta" class="destacado"></p>
+		
+	</article>
+	<footer>
+		<p>Alejandro L. Cerezo - Madrid 2017</p>
+	</footer>
+	<script type="text/javascript" src="script/ejercicio12a.js"></script>
+	<script type="text/javascript" src="script/main.js"></script>
 </body>
 </html>

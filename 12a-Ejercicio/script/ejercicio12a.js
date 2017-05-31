@@ -1,65 +1,67 @@
- 
- class Formulario{
-     constructor(){
-         this.oDOM = {
-            eFrase : document.querySelector("#sFrase"),
-            ebtnComprobar : document.querySelector("#btnComprobar"),
-            eRespusta : document.querySelector("#sRespusta"),
-        }; //fin dek ibjeto oDOM
+class Formulario {
 
-        console.dir(this.oDOM);     
+	constructor () {
+	// Creamos el "modelo" corespondiente a todos los elemetos existentes en el DOM
+		this.oDOM = {
+			eFrase : document.querySelector("#sFrase"),
+			eBtnComprobar :  document.querySelector("#btnComprobar"),
+			eRespuesta : document.querySelector("#sRespuesta"),
+		}; // fin del objeto oDOM
+	   
+		console.dir(this.oDOM);	
+	}
+
+	/**
+	 * @method controller
+	 */
+	controller () {
+		// Definicion de los manejadores de eventos
+		//this.oDOM.eFrase.addEventListener("keyup",this.actualizarVista.bind(this));
+		//oDOM.btnBorrar.onclick = actualizarVista;
+		this.oDOM.eBtnComprobar.addEventListener("click",this.actualizarVista.bind(this))
+	}
+
+	/**
+	 * @method actualizarVista
+	 * @param object oEvent 
+	 * @return void
+	 */
+	actualizarVista (oEvent) {
+		let aMensajes= [
+			"Mezcla de Mayuscula y Minúsculas",
+	 		"Todo minusculas",
+	 		"Todo mayusculas"
+		]	
+		//if (oEvent.currentTarget.id == "btnBorrar") {
+			 this.oDOM.eRespuesta.innerHTML=`
+			 <mark>
+			 	${aMensajes[this.comprobarFrase()]}
+			 </mark>
+			 ` 
+		//} 
+		//this.oDOM.spanNombre.innerHTML = this.oDOM.fNombre.value; 
+		//console.log(this.oDOM.fNombre.value);
+	} // Fin de la funcion actualizarVista
+
+
+	/**
+	 * @method comprobarFrase
+	 * @param 
+	 * @return number
+	 * 
+	 * 0 => Mezcla de Mayuscula y Minúsculas
+	 * 1 => Todo minusculas
+	 * 2 => Todo mayusculas 
+	 * 
+	 */
+	comprobarFrase() {
+		let nResponse = 0
+		if ( this.oDOM.eFrase.value == this.oDOM.eFrase.value.toLowerCase()) {
+			nResponse = 1
+		} else if (this.oDOM.eFrase.value == this.oDOM.eFrase.value.toUpperCase()) {
+			nResponse = 2
+		} 
+		return nResponse;
+	}
+
 }
-/**
- * @method controller
- */
-controller(){
-    this.ebtnComprobar.addEventListener("click", this.actualizarvista.bind(this))
-}
-/**
- *@method actualizarvista
- * @param {*object} oEvent 
- * @return void
- */
-actualizarvista(oEvent){
-
- let aMensajes = [
-        "MEzcla de mayusculas y minusculas",
-        "Todo en minusculas",
-        " Todo mayusculas",
-      
-    ]
-
-    this.comprobarFrase()
-
-    this.eRespusta.innerHTML=`
-    <mark>
-    ${aMensajes[this.comprobarFrase()]}
-    </mark>`
-
-}
- 
-/**
- * @method comprobarFrase
- * @param string
- * @return number
- * 
- * 0 => MEzcla de mayusculas y minusculas
- * 1 =>Todo en minusculas
- * 2 => Todo mayusculas
- */
- comprobarFrase(){
-     let sFrase = this.oDOM.eFrase.value
-     let nResponse = 0
-     if(sFrase == sFrase.toLowerCase()){
-         nResponse = 1
-         //Todo minusculas
-     }else if (this.oDOM.eFrase.value == this.oDOM.eFrase.value.toUpperCase()) {
-         //Todo mayúsculas
-         nResponse = 2
-     }else{
-         //Mezcla de Mayusculas  y minusculas
-
-     }
-  return nResponse;
-        }
- }   
