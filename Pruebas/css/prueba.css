@@ -1,5 +1,4 @@
-/******* Hoja de estilos ******/
-
+/*border-box{bix-sizing}*/
 
  html,body { margin: 0.3em;
             padding: 0.2em; 
@@ -17,12 +16,14 @@ label {
 
 
 
- p#Fecha { float: right; margin-right: 1em; }
+ p#Fecha { float: left; 
+          margin-right: 1em; }
 
 
   form p { text-indent: 0 }
 
-  fieldset { background: steelblue; 
+  fieldset { 
+  background-color: steelblue; 
   color:white; 
   margin-bottom: 1em; 
   padding:1em }
@@ -51,7 +52,7 @@ legend { background: navy;
  
 
   .aficiones{ 
-      margin-left: 2em;}
+      margin-left: 1.5em;}
       input {
 	float: left;
 }
@@ -61,3 +62,4 @@ input#Clave1, input#Clave2 {width: 35%;}
 fieldset#fsDatos input {width: 45%;}
 fieldset#fsFecha input {width: 40%;}
 fieldset#fsFecha input#anio {width: 55%;}
+
