@@ -1,0 +1,14 @@
+html,body{
+    background-color:gray;
+    font-family: sans-serif;
+}
+
+h1{
+    text-align: center;
+}
+legend{
+    font-family: 'Times New Roman', Times, serif , br;
+    font-size: 30px;
+    border: 1px solid; color:white;
+}
+
