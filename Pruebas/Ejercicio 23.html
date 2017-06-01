@@ -3,172 +3,147 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Formulario - JavaScript</title>
+	<title>Formulario en JavaScript</title>
 	<meta name="description" content="Ejercicios de JavaScript">
-	<meta name="author" content="David">
-  	<link rel="shortcut icon" href="fav_icon.png">
-  	<link rel="stylesheet" href="css/prueba.css">
-  	<style type="text/css">
-  		.oculto {display: none;}
-  		.bloque {display: block;}
-  	</style>
-  	<script>
-
-	class Formulario {
-		constructor () {
-			this.oName = document.querySelector("#fname"),
-			this.oApell = document.querySelector("#apell"),
-			this.oAddress = document.querySelector("#address"),
-			this.oCity = document.querySelector("#city"),
-			this.oComent = document.querySelector("#coment"),
-			this.aJoomla = document.querySelectorAll("[name = pregunta]")
-			this.oCond = document.querySelector("#condiciones"),
-			this.oCond1 = document.querySelector("#condiciones_1"),
-			this.oOpciones = document.querySelector("#opciones"),
-			this.oParrafo = document.querySelector("#parrafo_1"), // referencia del párrafo donde escribir
-			this.aSalida = []
-			this.oName.focus();	
-		}
-
-		getTextos () {
-			this.aSalida = [
-				{etiqueta : "Nombre", valor : this.oName.value},
-				{etiqueta : "Apellidos", valor : this.oApell.value},
-				{etiqueta : "Dirección", valor : this.oAddress.value},
-				{etiqueta : "Ciudad", valor : this.oCity.value},
-				{etiqueta : "Comentarios", valor : this.oComent.value}
-			]
-		}; //Fin de la función getTextos 
-
-		getRRadiobuttons () {				
-			for(let i=0; i < this.aJoomla.length; i++) {
-				if (this.aJoomla[i].checked) {
-					this.aSalida[this.aSalida.length] = {
-						etiqueta : "Preparado para dar Joomla!", valor : this.aJoomla[i].value.toUpperCase()}
-				};
-			};
-		}; //Fin de la función getRRadiobuttons
-
-		getCheckbox () {
-			if (this.oCond.checked) {
-				this.aSalida[this.aSalida.length] = {etiqueta : "Condiciones leidas!", valor : "SI"}
-			} 
-			else{
-				this.aSalida[this.aSalida.length] =  {etiqueta : "Condiciones leidas!", valor : "NO"};		
-			};	
-			if (this.oCond1.checked) {
-				this.aSalida[this.aSalida.length] = {etiqueta : "Condiciones leidas 2!", valor : "SI"}
-			} 
-			else{
-				this.aSalida[this.aSalida.length] =  {etiqueta : "Condiciones leidas 2!", valor : "NO"}	
-			};
-		}; //Fin de la función getCheckbox
-
-		getSelectOptions () {
-			let oOpcion = this.oOpciones.options[this.oOpciones.selectedIndex];
-			var textoSeleccionado = oOpcion.text; // Segundo valor
-			var valorSeleccionado = oOpcion.value; // 2
-			this.aSalida[this.aSalida.length] = {etiqueta : "Nivel de JavaScript", valor : textoSeleccionado} 
-		}; //Fin de la función getSelectOptions
-
-
-		recogeDatos () {
-			// Llamada a las funciones get de cada conjunto de controles
-			this.getTextos();
-			this.getRRadiobuttons();
-			this.getCheckbox();
-			this.getSelectOptions();
-			//llamada a la función que procesara el arry presentandolo en pantalla
-			this.escribeDatos ();
-		} // Fin de la funcion recogeDatos
-
-		escribeDatos () {
-			//ocultar formulario
-			document.querySelector("#form_1").className = "oculto";
-			//mostrar bloque div para el resultado
-			document.querySelector("#resultado").className = "bloque";
-			//incorporamos al parrafo cada línea del array		
-			for (var i = 0; i < this.aSalida.length; i++) {
-				this.oParrafo.innerHTML 		  
-					+= `<strong> ${this.aSalida[i].etiqueta} : </strong>
-					${this.aSalida[i].valor}</br>
-			`};
-		} // Fin de la funcion escribeDatos
-	} // Fin de la clase formulario
-
-	
-	document.addEventListener("DOMContentLoaded", function () {
-			oFormulario = new Formulario
-			document.querySelector("#submit").addEventListener("click", oFormulario.recogeDatos.bind(oFormulario))
-		}, false);	
-	</script>
+	<meta name="author" content="Daavid Baal">
+  	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<!--********Link a CSS********-->
+  	<link rel="stylesheet" href="css/prueba">
+	<!--********Link a JQuery********-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!--********Link a JavaScript********-->
+  	<script src='script/other'> </script>
+  	
 </head>
 
  <body>
- <!--body  onload="alert('Página cargada - OK');"-->
  
- 
-  	<header>
-  	<h1 title="Formulario 1">
-  		Inscripción como docente (Tajamar)
-    </h1>
-	</header>
 	<article>
- 		<form name ="form_1" id="form_1" method="post" action="mailto:alcerezo@microforum.es" enctype="text/plain">
- 		  	<fieldset><legend>Datos personales</legend>
-		  	<p><label for="fname">Nombre:</label>
- 		  		<input type="text" id="fname" name="fname" size="30" placeholder="Escriba su nombre"></p>
-	      	<p><label for="apell">Apellido:</label>
-	      		<input type="text" id="apell" name="apell" size="30" maxlength="100" placeholder="Escriba sus apellidos"></p>      
-	      	<p><label for="address">Domicilio:</label>
-	      		<input type="text" id="address" name="address" size="30"maxlength="200" placeholder="Escriba su dirección"></p>
-	    	<p><label for="city">Ciudad:</label>
-	    		<input type="text" id="city" name="city" placeholder="Escriba su ciudad"></p> 
-			<p><label for="coment">Comentarios:</label>
-				<textarea id="coment" name="coment" placeholder="Escriba los comentarios que consideres oprtunos"></textarea></p>
-			</fieldset>	
+ 	<form name="encuesta" id="encuesta" action="../Pruebas/Ejercicio 23" method="post"> 
+		<fieldset><legend>Datos del alumno</legend>
+		  	
+	<fieldset><legend>Identificación</legend>
+   			    <p><label for="Correo">Cuenta de correo</label>
+    			    <input type="email" title="Introduzca su dirección de correo" maxlength="50"  placeholder="tucorreo@ejemplo.com" name="Correo" id="Correo" required>
+                    <span id="errorCorreo" class="error"> </span></p>
+                <p><label for="Clave1">Introduzca su clave de acceso</label>
+                    <input id="Clave1" maxlength="12" name="Clave1" type="password" required
+                           pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" />
+                         <span id="errorClave" class="error"> </span></p>
+   			    <p><label for="Clave2">Repita la clave de acceso</label>
+                       <input id="Clave2" maxlength="12" name="Clave2" type="password" required
+                              pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" /></p>
+  			</fieldset> 
 
-			<fieldset><legend>Datos técnicoss</legend>
-		  	<p><label for="pregunta">¿Estas preparado para dar un curso de Joomla!?</label>	
-			<input type="radio" value="si" name="pregunta" id="pregunta_si"/> SI
-			<input type="radio" value="no" name="pregunta" id="pregunta_no"/> NO
-			<input type="radio" value="nsnc" name="pregunta" id="pregunta_nsnc"/> NS/NC
-			</p>
-			<p>
-			<input type="checkbox"  id="condiciones" value="condiciones" name="condiciones">
-			<label for="condiciones">He leído y acepto las condiciones</label>
-			</p>
-			<p>
-			<input type="checkbox"  id="condiciones_1" value="condiciones_1" name="condiciones_1">
-			<label for="condiciones">He leído y acepto las condiciones 2</label>
-			</p>
-			<p><label for="opciones">Tu nivel de JavaScript es</label>
-			<select id="opciones" name="opciones">
-				<option value="1">Muy Alto</option>
-				<option value="2">Alto</option>
-				<option value="3">Medio</option>
-				<option value="4">Bajo</option>
-			</select>					
-			</p>
+		  	<fieldset id="fsDatos" class="Derecha"><legend>Datos Personales</legend>
+		   		<label for="Nombre">
+		   			<span class="label">Nombre</span>
+			    	<input name="Nombre" id="Nombre" title="Introduzca su nombre" maxlength="40" / required>
+		   		</label>
+		    	<label for="Apellido1">
+		    		<span class="label">Primer apellido</span>
+			    	<input maxlength="30" name="Apellido1" id="Apellido1" required/>
+						
+		   		</label>
+		    	<label for="Apellido2">
+		    		<span class="label">Segundo apellido</span>
+			    	<input maxlength="30" name="Apellido2" id="Apellido2" />
+					
+		  		</label>
+		  		<fieldset id="fsFecha"><legend>Fecha de nacimiento</legend>
+		  			<p>
+			    		<label class="line" for="dia">
+			    			<span class="label">Día</span>
+				    		<input type="number" min="0" max="31"
+				    		name="dia" id="dia" value="0" />
+						</label>
+						<label class="line" for="mes">
+							<span class="label">Mes</span>
+				    		<input type="number" min="0" max="12" 
+				    		name="mes" id="mes" value="0" />
+						</label>
+						<label class="line" for="anio">
+							<span class="label">Año</span>
+			    			<input type="number" min="0" max="2014"
+			    			 name="anio" id="anio"	value="2000" />
+			    		</label>
+			    		
+		   			</p>
+		  		</fieldset>
+		 	</fieldset>
+
+		  	<fieldset id="fsCurso" class="Izquierda"><legend>Curso</legend>
+		  		<div class="Izquierda">
+			   		<label for="web">
+					 	<input type="radio" name="Curso" checked id="web" value="web"/>
+						Programador Web</label>
+			     	<label for="sistemas">
+				     	<input type="radio" name="Curso" id="sistemas" value="sistemas" />
+				     	Programador de Sistemas</label>	
+			  		<label for="objeto">
+				     	<input type="radio" name="Curso" id="objeto" value="objeto" />
+				     	Programador de Objetos</label>
+		  		</div>
+			     <div class="Derecha">
+				     <label>		     	
+				   		<select id="Materias" name="Materias" size="4" > 
+					    	<option value="1">Html</option>
+					    	<option value="2">CSS</option>
+					    	<option value="3">JavaScript</option>
+					    	<option value="4">PHP</option>
+				   		</select>
+				     </label>	
+			     </div>
+		    </fieldset>
+			<fieldset id="fsAficiones" class="Derecha"><legend>Aficiones</legend>
+			   	<div class="Izquierda">
+				   	<label for="Musica">
+				   		<input type="checkbox" id="Musica" name="Musica" />Música
+					</label>
+					<label for="Viajar">
+						<input class="aficiones" type="checkbox" id="Viajar" name="Viajar" />Viajar
+					 </label>
+					<label for="Pintura">
+						<input class="aficiones" type="checkbox" id="Pintura" name="Pintura" />Pintura </label>
+				    <label for="Foto">
+				    	<input class="aficiones" type="checkbox" id="Foto" name="Foto" />Fotografía
+				    </label>
+			   	</div>
+			   	<div class="Derecha">
+				   	<label for="Cine">
+				   		<input type="checkbox" id="Cine" name="Cine" />Cine
+				   	</label>
+				    <label for="Lectura">
+				    	<input class="aficiones" type="checkbox" id="Lectura" name="Lectura" />Lectura
+				    </label>
+				    <label for="Deporte">
+				    	<input class="aficiones" type="checkbox" id="Deporte" name="Deporte" />Deporte
+				    </label>
+					<label for="Baile">
+						<input class="aficiones" type="checkbox" id="Baile" name="Baile" />Baile
+					</label>
+				</div>
+			    <input type="hidden" id="aficion" name="aficion" />
 			</fieldset>
-			<fieldset>
-			<p><input id="submit" type="button" value="Aceptar"> &nbsp; 
-				<input id="reset" type="reset" value="Borrar"></p>
-			</fieldset>
-		</form>
-		<div id="resultado" class="oculto">
+		 	<fieldset id="fsBotones" class="Izquierda">
+			   	<button type="submit"><big>Enviar datos</big> </button>
+			    <button type="reset"><big>Restablecer valores</big></button>
+		 	</fieldset>
+		 	<fieldset id="fsFechaFinal" class="Izquierda">
+		 		<p id="fechaHoy"></p>
+		 	</fieldset>
+	 	</fieldset>
+ 	</form>	
+	 <div id="resultado" class="oculto">
 			<h2>Los datos del usuario son los siguientes</h2>			
-		<p id="parrafo_1"> </p>
+		<ul id="listaDatos"> </ul>
 		</div>	
-
- 		<script>
-   			//<!--document.write("Hola Mundo");
-			//-->
-        </script>
-	</article>
+ 	</article>
+	
 	<footer>
 		<p>
-			&copy; Copyright  by Alejandro L. Cerezo
+			&copy; Copyright by Daavid Baal
 		</p>
 	</footer>
  </body>

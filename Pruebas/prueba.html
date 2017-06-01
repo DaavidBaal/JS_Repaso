@@ -10,6 +10,7 @@
   	<link rel="shortcut icon" href="/favicon.ico">
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
   	<link rel="stylesheet" href="css/prueba.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   	<script src='script/prueba.js'> </script>
   	<script>
   		window.onload = function () {
@@ -53,20 +54,20 @@
  <body>
  
 	<article>
- 	<form name="encuesta" id="encuesta" action="java023.php" method="post"> 
+ 	<form name="encuesta" id="encuesta" action="../Pruebas/Ejercicio 23" method="post"> 
 		<fieldset><legend>Datos del alumno</legend>
 		  	<fieldset class="Izquierda"><legend>Identificación</legend>
 		   		<label for="Correo">
 		   			<span class="label">Cuenta de correo</span>
-		    		<input name="Correo" id="Correo" title="Introduzca su direcci&oacute;n de correo" maxlength="50"  placeholder="cuenta@dominio.com" type="email">	
+		    		<input name="Correo" id="Correo" title="Introduzca su direccion de correo" maxlength="50"  placeholder="ejemplo@tucorreo.com" type="email" required>	
 		   		</label>
 		   		<label for="Clave1">
 		   			<span class="label">Introduzca su clave de acceso</span>
-		    		<input id="Clave1" maxlenght="10" name="Clave1" type="password" /> 
+		    		<input id="Clave1" maxlenght="10" name="Clave1" type="password" required/> 
 		   		</label>
 		   		<label for="Clave2">
 		   			<span class="label">Repita la clave de acceso</span>
-		    		<input id="Clave2" maxlenght="10" name="Clave2" type="password" />
+		    		<input id="Clave2" maxlenght="10" name="Clave2" type="password" required/>
 		   		</label>
 		  	</fieldset>
 		  	<fieldset id="fsDatos" class="Derecha"><legend>Datos Personales</legend>

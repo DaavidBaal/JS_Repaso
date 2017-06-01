@@ -1,6 +1,5 @@
 /**********************************************************
-Funciones "externas" invocadas desde el formulario
-en el proceso de validación
+Funciones "externas" invocadas desde el formulario en el proceso de validación
 ***********************************************************/
 function validaDatos()
 {
@@ -22,8 +21,7 @@ with (window.document.forms.encuesta)
 }
 
 /**********************************************************
-Funciones "internas" invocadas por otras funciones 
-en el proceso de validación
+Funciones "internas" invocadas por otras funciones  en el proceso de validación
 ***********************************************************/
 
 function validaCorreo()
