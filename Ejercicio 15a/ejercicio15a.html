@@ -9,6 +9,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/ejercicio15a.css">
     <script src="script/ejercicio15a.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      }
+    });
+ 
+    $( "#opener" ).on( "click", function() {
+      $( "#dialog" ).dialog( "open" );
+    });
+  } );
+  </script>
 </head>
 
 <body>
@@ -21,10 +44,10 @@
         <p> Un gigantesco avión diseñado para colocar cohetes en órbita en pleno vuelo, salió por primera vez del hangar donde era construido
         en California para pruebas de combustible, informó este miércoles el fabricante Stratolaunch, que proyectó ensayos
         espaciales para 2019.</p></span>
-        <span class="frase"><p>"Esto marca el fin de la fase inicial de construcción de la aeronave y el comienzo de la fase
-        de pruebas en tierra (...) motores y taxeo antes del primer vuelo"</span>, indicó Jean Floyd, CEO de la empresa del multimillonario
+        <div id="dialog" title="Basic dialog"><p>"Esto marca el fin de la fase inicial de construcción de la aeronave y el comienzo de la fase
+        de pruebas en tierra (...) motores y taxeo antes del primer vuelo"</div>, indicó Jean Floyd, CEO de la empresa del multimillonario
         filantrópico y cofundador de la gigante informática Microsoft, Paul Allen.</p></span>
-        <span class="texto">
+        <span class="dialog">
         <p>El mayor avión del mundo está compuesto por dos cabinas, unidas por su ala de 117 metros -más que el largo promedio de un campo de fútbol FIFA (100 a 110
         metros)- estaba estacionado fuera del hangar en Mojave. Utilizando motores de seis aviones 747, la aeronave de 227
         toneladas sería capaz de lanzar cargamento, como satélites, y quizás algún día, humanos, a órbitas bajas de la Tierra.</p></span>
@@ -37,6 +60,7 @@
         y los reensamblaron en una sola unidad capaz de despegar con una carga de 590 toneladas.Antes de sacarlo del hangar,
         tuvo que ser desmontado un andamio de tres pisos. El Stratolaunch es también llamado 'Ruc', en honor al ave de la
         mitología persa tan grande que puede levantar un elefantes con sus garras.</p></span>
+        <button id="opener">Open Dialog</button>
     </article>
 <hr>
 <footer>
