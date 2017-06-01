@@ -6,10 +6,10 @@
 	<title>Formulario en JavaScript</title>
 	<meta name="description" content="Ejercicios de JavaScript">
 	<meta name="author" content="Daavid Baal">
-  	<link rel="shortcut icon" href="/favicon.ico">
+  
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 	<!--********Link a CSS********-->
-  	<link rel="stylesheet" href="css/prueba">
+  	<link rel="stylesheet" href="css/prueba.css">
 	<!--********Link a JQuery********-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<!--********Link a JavaScript********-->
@@ -20,17 +20,19 @@
  <body>
  
 	<article>
- 	<form name="encuesta" id="encuesta" action="../Pruebas/Ejercicio 23" method="post"> 
+ 	<form name="formulario" id="formulario" action="#" method="post"> 
 		<fieldset><legend>Datos del alumno</legend>
 		  	
-	<fieldset><legend>Identificación</legend>
+	<fieldset class="Izquierda"><legend>Identificación</legend>
    			    <p><label for="Correo">Cuenta de correo</label>
     			    <input type="email" title="Introduzca su dirección de correo" maxlength="50"  placeholder="tucorreo@ejemplo.com" name="Correo" id="Correo" required>
+
                     <span id="errorCorreo" class="error"> </span></p>
                 <p><label for="Clave1">Introduzca su clave de acceso</label>
                     <input id="Clave1" maxlength="12" name="Clave1" type="password" required
                            pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" />
                          <span id="errorClave" class="error"> </span></p>
+
    			    <p><label for="Clave2">Repita la clave de acceso</label>
                        <input id="Clave2" maxlength="12" name="Clave2" type="password" required
                               pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" /></p>
@@ -127,7 +129,7 @@
 			    <input type="hidden" id="aficion" name="aficion" />
 			</fieldset>
 		 	<fieldset id="fsBotones" class="Izquierda">
-			   	<button type="submit"><big>Enviar datos</big> </button>
+			   	<button type="submit" onclick=""><big>Enviar datos</big> </button>
 			    <button type="reset"><big>Restablecer valores</big></button>
 		 	</fieldset>
 		 	<fieldset id="fsFechaFinal" class="Izquierda">
@@ -135,7 +137,7 @@
 		 	</fieldset>
 	 	</fieldset>
  	</form>	
-	 <div id="resultado" class="oculto">
+	 <div id="resultado" class="oculto" style="display:none">
 			<h2>Los datos del usuario son los siguientes</h2>			
 		<ul id="listaDatos"> </ul>
 		</div>	

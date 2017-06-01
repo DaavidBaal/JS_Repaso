@@ -18,6 +18,7 @@ article{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color:black;
     font-style: italic;
     float: right;
+    clear: right;
     width: 40%;
     border: 1.5px solid coral;
 }

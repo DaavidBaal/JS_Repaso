@@ -14,7 +14,18 @@ function validaNombre() {
 
         function validaApellidos() {
 // fallback para validación del apellido (sólo en ausencia de HTML5)
-            var oNodo = document.getElementById("Apellidos");
+            var oNodo = document.getElementById("Apellido1");
+            if (!oNodo.value.match(/^[A-ZÑ]+([A-ZÑa-zñ_]+)$/)) {
+                oNodo.nextSibling.nextSibling.innerHTML = "Apellido incorrecto"
+                oNodo.focus();
+                return false;
+            }
+            else {
+                oNodo.nextSibling.nextSibling.innerHTML = " ";
+                return true;
+            }
+        } 
+        var oNodo = document.getElementById("Apellido2");
             if (!oNodo.value.match(/^[A-ZÑ]+([A-ZÑa-zñ_]+)$/)) {
                 oNodo.nextSibling.nextSibling.innerHTML = "Apellido incorrecto"
                 oNodo.focus();
@@ -46,7 +57,7 @@ function validaNombre() {
             oNodo2 = document.getElementById("Clave2")
 
             if (Modernizr.input.required) {
-                // funcion manejadorea del evento oninput de Clave2 (sólo con HTML5)
+// funcion manejadorea del evento oninput de Clave2 (sólo con HTML5)
                 var msg = "";			        
                 if (oNodo1.value != oNodo2.value) {
                     msg = "Las contraseñas no coinciden" 
@@ -54,8 +65,7 @@ function validaNombre() {
                 oNodo2.setCustomValidity(msg)
                 return;
             }
-
-            // fallback para validación de las contraseñas (sólo en ausencia de HTML5)
+// fallback para validación de las contraseñas (sólo en ausencia de HTML5)
             if (oNodo1.value != oNodo2.value ||
                 !oNodo1.value.match(/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/)) {
                 oNodo1.nextSibling.nextSibling.innerHTML = "Debe introducir una clave correcta";
@@ -70,9 +80,9 @@ function validaNombre() {
 
         function validaCheck1() {
             // fallback para validación del nombre (sólo en ausencia de HTML5)
-            oNodo = document.getElementById("condiciones");
+            oNodo = document.getElementById("Curso");
             if (!oNodo.checked) { // checkBox no seleccionado
-                oNodo.nextSibling.nextSibling.innerHTML = "Debe aceptar las condiciones";
+                oNodo.nextSibling.nextSibling.innerHTML = "Debe selecionar uno";
                 oNodo.focus();
                 return false;
             }
@@ -88,7 +98,7 @@ function validaNombre() {
             if (Modernizr.input.required) {
                 // sólo en HTML5
                 //ocultar formulario (incompatible con IE8)
-                document.getElementById("form_1").classList.add("oculto")
+                document.getElementById("formulario").classList.add("oculto")
                 //mostrar bloque div para el resultado (incompatible con IE8)
                 document.getElementById("resultado").classList.remove("oculto");
                 // limpiar el nodo <ul> donde se presentarán los datos
@@ -163,7 +173,7 @@ function validaNombre() {
             document.getElementById("Nombre").focus();
             if (Modernizr.input.required) {
                 // en modo HTML%
-                document.getElementById('form_1').addEventListener("submit", recogeDatos)
+                document.getElementById('formulario').addEventListener("submit", recogeDatos)
                 document.getElementById("Clave2").oninput = validaPassw
             } else {
                 // en modo no HTML5 se activa la comprobación cada vez que se utiliza un control del formulario

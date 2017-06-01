@@ -7,7 +7,7 @@
             font-family: Sans-serif; }
 
 
- h3 { text-align: center;}
+h3 { text-align: center;}
 
 label {
   	display:block;
@@ -22,7 +22,7 @@ label {
 
   form p { text-indent: 0 }
 
-  fieldset { 
+ fieldset { 
   background-color: steelblue; 
   color:white; 
   margin-bottom: 1em; 
@@ -58,7 +58,7 @@ legend { background: navy;
 }
 
 input#Correo {width: 45%;}
-input#Clave1, input#Clave2 {width: 35%;}
+input#Clave1, input#Clave2 {width: 40%;}
 fieldset#fsDatos input {width: 45%;}
 fieldset#fsFecha input {width: 40%;}
 fieldset#fsFecha input#anio {width: 55%;}

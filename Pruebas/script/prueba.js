@@ -304,10 +304,10 @@ function fechaActual(sLugar) {
 	var mes = dFecha.getMonth();
 	return ('En ' + sLugar + ', el ' + aDias[diaSem] + ' día ' + diaMes + ' de ' + aMeses[mes] + ' del año ' + anio);
 }
+
 class Formulario {
 
-        constructor () {
-			with (window.document.forms.encuesta)
+        constructor () 
             this.oDatos = {"Nombre": "",
                         "Apellidos": "",
                         "Dirección": "",
@@ -337,7 +337,7 @@ class Formulario {
 
         escribeDatos () {
             //ocultar formulario
-            document.getElementById("form_1").classList.toggle("oculto")
+            document.getElementById("encuesta").classList.toggle("oculto")
             //mostrar bloque div para el resultado
             document.getElementById("resultado").classList.toggle("oculto");
             //incorporamos a la lista cada elemento del objeto		
