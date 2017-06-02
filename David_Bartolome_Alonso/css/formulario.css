@@ -37,8 +37,10 @@ legend {
   	float: right;
   	width: 40% }
 
-#fsCurso div.Izquierda {width: 60%}
-#fsCurso div.Derecha {width: 30%}
+
+
+#Curso div.Izquierda {width: 60%}
+#Curso div.Derecha {width: 30%}
 
 .submit {  margin-left: 1.5%; }
 
@@ -49,7 +51,7 @@ span.label {
 	float: left;
 	width: 50%;}
 
-#fsFecha span.label {
+#Fecha span.label {
 	width:10%;
 	text-align: center;
 }

@@ -11,7 +11,10 @@
   	<link rel="stylesheet" href="css/formulario.css">
 	  			<!--****Link a JavaScript*****-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="script/clases.js"></script>
+<script src="script/clases.js"></script>
+<style>
+.display {}
+</style>
 </head>
 
  <body>
@@ -50,25 +53,9 @@
 		    	<input size="30" maxlength="30" name="Apellido2" id="Apellido2"required />
 					
 	  		</label>
-	  		<fieldset id="Fecha"><legend>Fecha de nacimiento</legend>
-	  			<p>
-		    		<label class="line" for="dia">
-		    			<span class="label">Día</span>
-			    		<input type="number" min="0" max="31"
-			    		name="dia" id="dia" value="0" />
-					</label>
-					<label class="line" for="mes">
-						<span class="label">Mes</span>
-			    		<input type="number" min="0" max="12" 
-			    		name="mes" id="mes" value="0" />
-					</label>
-					<label class="line" for="anio">
-						<span class="label">Año</span>
-		    			<input type="number" min="0" max="2014"
-		    			 name="anio" id="anio"	value="2000" />
-		    		</label>
-		    		
-	   			</p>
+	  		<fieldset id="Fecha">
+				  <legend>Fecha de nacimiento</legend>
+                	<input type="date" id="date">	
 	  		</fieldset>
 	 	</fieldset>
 	  	<fieldset id="Curso" class="Izquierda"><legend>Curso</legend>
@@ -129,7 +116,7 @@
                         <input type="reset" name="borrar" value="Restablecer valores">
 
 	 	</fieldset>
-	 	<fieldset id="fsFecha" class="Izquierda">
+	 	<fieldset id="Fecha" class="Izquierda">
 	 		<p id="fechaHoy"></p>
 	 	</fieldset>
  	</fieldset>
