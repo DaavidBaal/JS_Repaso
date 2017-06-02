@@ -1,8 +1,12 @@
+/**
+ * @method Validar nombre
+ */
+
 function validaNombre() {
-// fallback para validación del nombre (sólo en ausencia de HTML5)
-            var oNodo = document.getElementById("Nombre") ;
-            if (oNodo.value.length == 0) {
-                oNodo.nextSibling.nextSibling.innerHTML = "Debe completar el Nombre";
+let  oNombre = getElementById ("Nombre");
+           
+            if (oNombre.value.length == 0) {
+                oNombre.nextSibling.nextSibling.innerHTML = "Introduzaca el Nombre";
                 oNodo.focus();
                 return false;
             }
@@ -176,12 +180,12 @@ function validaNombre() {
                 document.getElementById('formulario').addEventListener("submit", recogeDatos)
                 document.getElementById("Clave2").oninput = validaPassw
             } else {
-                // en modo no HTML5 se activa la comprobación cada vez que se utiliza un control del formulario
+     // en modo no HTML5 se activa la comprobación cada vez que se utiliza un control del formulario
                 document.getElementById("submit").onclick = recogeDatos;
-               // document.getElementById("Correo").onblur = validaCorreo;
-               //document.getElementById("Clave2").onblur = validaPassw
-               //document.getElementById("Nombre").onblur = validaNombre;
-               //document.getElementById("Apellidos").onblur = validaApellidos;
+               document.getElementById("Correo").onblur = validaCorreo;
+               document.getElementById("Clave2").onblur = validaPassw
+               document.getElementById("Nombre").onblur = validaNombre;
+               document.getElementById("Apellidos").onblur = validaApellidos;
             }            
         }
 
@@ -194,3 +198,6 @@ function validaNombre() {
         } else {
             window.onload = main;
         }
+
+
+
