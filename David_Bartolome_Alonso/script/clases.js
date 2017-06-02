@@ -16,6 +16,7 @@ class Formulario {
 
 
 			
+
 }
 //Inicio de la Función getTextos
  
@@ -31,10 +32,13 @@ class Formulario {
 
 				]
 			};
-			//Fin de la función getTextos
+			
+//Fin de la función getTextos
+
 /**
  * Funcion de Fecha actual
  */
+
 fechaactual() {
         let hoy = new Date();
         let dias = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
@@ -44,7 +48,7 @@ fechaactual() {
 /**
  * Funcion sacar aficiones
  */
-chBox() {
+aFiccion() {
         let aficiones = ""
         for (let i = 0; i < this.aFiccion.length; i++) {
             if (this.aCBox[i].checked) {
@@ -59,7 +63,7 @@ chBox() {
 /**
  * Inicio Funcion select
  */
-	    cargarSelect(oDom, aDatos) {
+	cargarSelect(oDom, aDatos) {
         oDom.innerHTML = "";
         for (var i = 0; i < aDatos.length; i++) {
             oDom.innerHTML += "<option>" + aDatos[i] + "</option>";
@@ -73,7 +77,7 @@ chBox() {
         var nSelect = this.sSelect.options[this.sSelect.selectedIndex];
         var domOption = domSelect.options[nSelect]
         this.sSelect = domOption.text;
-	}
+	};
 
 
 //Fin funcion selec	
@@ -88,7 +92,7 @@ chBox() {
 			this.fechaactual();
 			this.chbox();
 			this.escribeDatos ();
-		} 
+		};
 
 // Fin de la funcion recogeDatos
 
