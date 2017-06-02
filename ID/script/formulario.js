@@ -1,133 +1,308 @@
-class Formulario {
-    constructor() {
-            this.fForm = document.querySelector("#formBlue"),
-            this.fNombre = document.querySelector("#name"),
-            this.fPApellido = document.querySelector("#sname"),
-            this.fSApellido = document.querySelector("#s2name"),
-            this.fFechaNacimiento = document.querySelector("#date"),
-            this.fEmail = document.querySelector("#email"),
-            this.fContrasena = document.querySelector("#pass"),
-            this.fRContrasena = document.querySelector("#rpass"),
-            this.aCBox = document.querySelectorAll("[name = aficion]"),
-            this.fParrafo = document.querySelector("#start"),
-            this.rButt = document.querySelectorAll("[name = category]"),
-            this.fSalida = [],
-            this.sSelect = "",
-            this.valCurso = "",
-            this.aPasswd = ["", ""],
-            this.domSubCurso = document.querySelector("#sCurso"),
-            this.cCurso = {
-                web: ["HTML", "Css", "JS", "PHP"],
-                sist: ["aaaaa", "bbbbb", "ccccc", "ddddd"],
-                obj: ["11111", "22222", "33333", "44444"]
-            }
+/**********************************************************
+Funciones "externas" invocadas desde el formulario
+en el proceso de validación
+***********************************************************/
+function validaDatos()
+{
+if( !validaCorreo() || !validaClave() || !validaNombre() || !validaFecha() )
+	return false;
+else
+	return true;
+//alert("Función validaDatos concluida");
+}
 
-    }
+function actualizarColor(Elemento)
+{
+//vuelve a cambiar los colores del elemento de error a los originales
+with (window.document.forms.encuesta)
+	{
+	Elemento.style.color='black';
+	Elemento.style.backgroundColor='white';	
+	}
+}
 
-    sacarTextos() {
-        this.fSalida = [
-            { etiqueta: "Nombre", valor: this.fNombre.value },
-            { etiqueta: "Primer Apellido", valor: this.fPApellido.value },
-            { etiqueta: "Segundo Apellido", valor: this.fSApellido.value },
-            { etiqueta: "Fecha de nacimiento", valor: this.fFechaNacimiento.value },
-            { etiqueta: "Correo Electronico", valor: this.fEmail.value },
-            { etiqueta: "Contraseña", valor: this.fContrasena.value },
-        ]
-    }
+/**********************************************************
+Funciones "internas" invocadas por otras funciones 
+en el proceso de validación
+***********************************************************/
+
+function validaCorreo()
+{
+//window es el objeto del que parten todos los demas y es innecesario ponerlo
+//window.document.forms[0].Correo.value.indexOf('@') serÃ­a el formulario 0, el primero y Ãºnico que tenemos
+if(window.document.forms.encuesta.Correo.value.indexOf('@')<0)
+	{
+	alert('Correo incorrecto '+document.forms.encuesta.Correo.value);
+	errorValidando(document.forms.encuesta.Correo);
+	return false;
+	}
+else
+	{
+	//Actualizar(document.forms.encuesta.Correo);
+	return true;
+	}
+}
+
+function validaClave()
+{
+/*with (window.document.forms.encuesta)
+con este with nos ahorramos poner la ruta completa de los elementos
+  de nuestro fomulario encuesta  habrÃ­a que poner todo a lo que abarque entre llaves {}
+   sino solo vale para el siguiente elemento
+  en nuestro caso afecta a Clave2 porque esta concatenado por los if ... else*/
+if (   Clave1.value=='' )
+	{
+	alert('No se ha introducido la Clave');
+	errorValidando(document.forms.encuesta.Clave1);
+	return false;
+	}
+else
+	{
+	//Actualizar(document.forms.encuesta.Clave1);
+ 	if ( Clave1.value != Clave2.value )
+		{
+		alert('Las claves deben ser iguales;');
+		errorValidando(document.forms.encuesta.Clave2);
+		return false;
+		}
+ 	else
+		{
+		//Actualizar(document.forms.encuesta.Clave2);
+		return true;
+		}
+	}
+}
+
+function validaNombre()
+{
+// with (window.document.forms.encuesta)
+if (Nombre.value=='')
+	{
+	alert('No se ha introducido el Nombre');
+	errorValidando(document.forms.encuesta.Nombre);
+	return false;
+	}
+else
+	{
+	//Actualizar(document.forms.encuesta.Nombre);
+	if (Apellido1.value=='')
+		{
+		alert('No se ha introducido el Apellido1');
+		errorValidando(document.forms.encuesta.Apellido1);
+		return false;
+		}
+	else
+		{
+		//Actualizar(document.forms.encuesta.Apellido1);
+		if (Apellido2.value=='')
+			{
+			alert('No se ha introducido el Apellido2');
+			errorValidando(document.forms.encuesta.Apellido2);
+			return false;
+			}
+		else
+			{
+			//Actualizar(document.forms.encuesta.Apellido2);
+			return true;
+			}
+		}
+	}
+}
+
+function validaFecha()
+{
+with (window.document.forms.encuesta)
+	if ( esNumero( parseInt(dia.value), parseInt(mes.value), parseInt(anio.value) ) && 
+						comprobarFechas(dia.value,mes.value,anio.value) )
+		{
+		with (window.document.forms.encuesta)
+			{
+			//Actualizar(dia);
+			//Actualizar(mes);
+			//Actualizar(anio);
+			return true;
+			}
+		}
+	else
+		{
+		alert('Fecha incorrecta');
+		with (window.document.forms.encuesta)
+			{
+			errorValidando(dia);
+			errorValidando(mes);
+			errorValidando(anio);
+			return false;
+			}
+		}	
+}
+
+function comprobarFechas (dd,mm,aa)
+{
+var array_meses=new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+if(esBisiesto(aa))
+	array_meses[1]=29;
+// Lo anterior deberÃ­a ir con el if final para comprobar el dÃ­a 
+// y la funciÃ³n bisiesto solo deberÃ­a llamarla si el mes es 2 if(mm==2 && bisiesto(aa))
+if (!esAnio(aa))
+	return false;
+else
+	if (!esMes(mm))
+		return false;
+	else
+		if(dd>array_meses[mm-1] || dd<=0)
+			return false;
+		else
+			return true;
+}
+
+function esNumero (d,m,a)
+{
+if ( isNaN(d) || isNaN(m) || isNaN(a) )
+	return false;
+else
+	return true;
+}
+
+function esBisiesto(aa)
+{
+return ((aa%4==0 && aa%100!=0) || aa%400==0);
+}
+
+function esMes (mm)
+{
+return (mm > 0 && mm < 13);
+}
+
+function esAnio (aa)
+{
+return (aa >= 1900 && aa <= 2100);
+}
+
+function errorValidando(Elemento)
+{
+//with (window.document.forms.encuesta)
+	{
+	Elemento.style.color='silver';
+	Elemento.style.backgroundColor='green';
+	Elemento.focus();
+	}
+}
+
+/*************************************************************
+Funciones "externas" invocadas desde el formulario
+en procesos automáticos relacionados con el formato de los campos
+o el almacenamiento de los datos
+* ***********************************************************/
+
+//cambia el correo electrónico todo a minúsculas
+function todoMinusculas(oControl)
+{
+Control.value = Control.value.toLowerCase( );
+//No recibimos ni devolvemos nada porque jugamos con el mismo objeto a través del puntero Control
+}
 
 
-    diaHoy() {
-        let hoy = new Date();
-        let dias = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
-        let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-        document.getElementById("systemDate").innerHTML = "Hoy es " + " " + dias[hoy.getDay()] + " " + "dia" + " " + hoy.getDate() + " " + "de" + " " + meses[hoy.getMonth()] + " " + "del año" + " " + hoy.getFullYear();
-    }
-    chBox() {
-        let aficiones = ""
-        for (let i = 0; i < this.aCBox.length; i++) {
-            if (this.aCBox[i].checked) {
-                aficiones = aficiones + " " + this.aCBox[i].value + " ,";
-            }
-        }
-        this.fSalida[this.fSalida.length] = { etiqueta: "Aficiones", valor: aficiones.slice(0, -1) }
-    }
+//cambia a mayuscula la primera letra en nombres y apellidos
+function primeraMayuscula(Objeto_this)
+{
+var Cadena = new String ();
+Cadena = Objeto_this.value;
+//Ahora viene la funcion tal y como estaba en el ejercicio 22
+var Frase = Cadena.charAt(0).toUpperCase();
+for(i=1; i<Cadena.length; i++)
+	if(Cadena.charAt(i-1)!=' ')
+		Frase+=Cadena.charAt(i).toLowerCase();
+	else
+		Frase+=Cadena.charAt(i).toUpperCase();
+//Y volvemos a pasarle la Cadena reconstruida al objeto this que recibiamos como su atributo value
+Objeto_this.value = Frase;
+}
 
-    doIt(the_value) {
-        switch (the_value) {
-            case "web":
-                this.cargarSelect(this.domSubCurso, this.cCurso.web)
-                this.valCurso = this.rButt[0].nextSibling.data;
-                break;
+//cambia el contenido de la lista con las asignaturas correspondientes a cada curso
+function asignaturas(Elemento)
+{
+//Elemento es una string con el nombre puesto que recibimos objeto.value
+with (window.document.forms.encuesta)
+	{
+	if(Elemento=='web')
+		{
+//Materias es un array y por tanto utilizamos la misma sintaxis que en C para manejarlo
+//DeberÃ­a coger igual comillas dobles que simples para cadenas de caracteres
+		Materias[0].text='HTML';
+		Materias[0].value=1;
+		Materias[1].text="CSS";
+		Materias[1].value=2;
+		Materias[2].text='JavaScrip';
+		Materias[2].value=3;
+		Materias[3].text="PHP";
+		Materias[3].value=4;
+		Materias[4].text="PHP Avanzado";
+		Materias[4].value=5;
+		}	
+	if(Elemento=='sistemas')
+		{
+		Materias[0].text='Shell Scripts';
+		Materias[0].value=5;
+		Materias[1].text="Linux C";
+		Materias[1].value=6;
+		Materias[2].text='MySQL';
+		Materias[2].value=7;
+		Materias[3].text="Servidores";
+		Materias[3].value=8;
+		}	
+	if(Elemento=='objeto')
+		{
+		Materias[0].text='Lenguaje C';
+		Materias[0].value=9;
+		Materias[1].text="C++";
+		Materias[1].value=10;
+		Materias[2].text='Java';
+		Materias[2].value=11;
+		Materias[3].text="Basic";
+		Materias[3].value=12;
+		}	
+	}
+}
 
-            case "sist":
-                this.cargarSelect(this.domSubCurso, this.cCurso.sist)
-                this.valCurso = this.rButt[1].nextSibling.data;
-                break;
+// el elemento del formulario encuesta tiene un input hidden de name ="aficion";
+// en pa propiedad value de ese elemento almacenamos las aficiones pulsadas
+function recopilaAficiones()
+{
+with (window.document.forms.encuesta)
+	{
+	aficion.value='';
+	if(Musica.checked==true)
+		aficion.value+='M';
+	if(Viajar.checked==true)
+		aficion.value+='V';
+	if(Pintura.checked==true)
+		aficion.value+='P';
+	if(Foto.checked==true)
+		aficion.value+='F';
+	if(Cine.checked==true)
+		aficion.value+='C';
+	if(Lectura.checked==true)
+		aficion.value+='L';
+	if(Deporte.checked==true)
+		aficion.value+='D';
+	if(Baile.checked==true)
+		aficion.value+='B';
+	}
+}
 
-            case "obj":
-                this.cargarSelect(this.domSubCurso, this.cCurso.obj)
-                this.valCurso = this.rButt[2].nextSibling.data;
-                break;
-        }
-    }
-
-    escribeSelect(oE) {
-        var domSelect = oE.currentTarget;
-        if (domSelect.childElementCount > 4) {
-            domSelect.removeChild(domSelect.children[0]);
-        }
-        var nSelect = this.sSelect.options[this.sSelect.selectedIndex];
-        var domOption = domSelect.options[nSelect]
-        this.sSelect = domOption.text;
-    }
-
-    cargarSelect(oDom, aDatos) {
-        for (var i = 0; i < aDatos.length; i++) {
-            oDom.innerHTML += "<option>" + aDatos[i] + "</option>";
-        }
-    }
-    escribeCurso() {
-        this.fSalida[this.fSalida.length] = { etiqueta: this.valCurso, valor: this.sSelect }
-    }
-    comparar() {
-        var msg = "";
-        if (this.fContrasena.value != this.fRContrasena.value) {
-            msg = "Las contraseñas no coinciden"
-        }
-        this.fRContrasena.setCustomValidity(msg)
-    }
-
-    comprobar() {
-        var validado = true;
-        this.aPasswd[0] = this.fContrasena.value;
-        this.aPasswd[1] = this.fRContrasena.value;
-        if (this.aPasswd[0] != this.aPasswd[1]) {
-            validado = false;
-        }
-        this.escribirTextos(validado);
-        console.dir(this.escribirTextos);
-    }
-
-    escribirTextos(val) {
-        var msgs = "";
-        if (!val) {
-            msgs = "Las contraseñas no coinciden"
-            this.fContrasena.focus();
-        } else this.fForm.className = "oculto";
-        document.querySelector("#respuesta").className = "bloque";
-        for (var i = 0; i < this.fSalida.length; i++) {
-            this.fParrafo.innerHTML += `<li> ${this.fSalida[i].etiqueta} :  <span>${this.fSalida[i].valor}</span></li><hr> `
-        }
-    }
-
-    fRecDatos() {
-
-        this.sacarTextos();
-        this.chBox();
-        this.escribeSelect();
-        this.escribeCurso();
-        this.fForm.submit = this.comprobar();
-        this.fRContrasena.oninput = this.comparar();
-
-        //this.escribirTextos();
-    }
+//genera al final del formulario la fecha en que este se esta rellenando
+function fechaActual(sLugar) {
+	var aDias = new Array('Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'S&aacute;bado');
+	var aMeses = new Array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
+	//Creamos una nueva instancia del objeto Date del cual su valor es la fecha y hora actual
+	var dFecha = new Date();
+	//Para obtener el aÃ±o utilizamos el mÃ©todo getYear():
+	var anio = dFecha.getYear() + 1900;
+	//getDay() devuelve 0 para domingo y asÃ­ sucesivamente
+	var diaSem = dFecha.getDay();
+	//getDate() devuleve el dÃ­a del mes
+	var diaMes = dFecha.getDate();
+	//getMonth() devuelve 0 para enero
+	var mes = dFecha.getMonth();
+	return ('En ' + sLugar + ', el ' + aDias[diaSem] + ' día ' + diaMes + ' de ' + aMeses[mes] + ' del año ' + anio);
+}
