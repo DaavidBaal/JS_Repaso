@@ -34,7 +34,7 @@ class Formulario  {
 			};
 
 //Fin de la función getTextos
-};
+
 /**
  * Funcion de Fecha actual
  */
@@ -92,14 +92,14 @@ aFiccion() {
 			this.fechaactual();
 			this.Ficcion();
 			this.escribeDatos ();
-		};
+		
 
 // Fin de la funcion recogeDatos
 
-		escribeDatos () {
-	console.log(escribeDatos)
+		escribeDatos () 
+	
 //ocultar formulario
-			document.querySelector("#encuesta").className = "oculto";
+			document.querySelector("#formulario").className = "oculto";
 //mostrar bloque div para el resultado
 			document.querySelector("#respuesta").className = "bloque";
 //incorporamos al parrafo cada línea del array		
@@ -110,13 +110,20 @@ aFiccion() {
 	 // Fin de la clase formulario
 
 	
-	document.addEventListener("DOMContentLoaded", function () {
+		document.addEventListener("DOMContentLoaded", function () {
 			oFormulario = new Formulario;
-  document.getElementById("submit").onclick = oFormulario.recogeDatos.bind(oFormulario);
-		}, false);		
+       document.getElementById("submit").onclick = oFormulario.recogeDatos.bind(oFormulario);
+		}, false);	
+
+	$(document).ready(function(){
+    $("submit").click(function(event){ event.preventDefault();
+    });
+});
 
 document.getElementById("fechaHoy").innerHTML += fechaActual("Madrid");
 /**
  * *****************************************************************************************************
  */
+document.getElementById("submit").addEventListener("click", function(){
+    alert("Hello World!");
 
