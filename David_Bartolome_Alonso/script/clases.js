@@ -1,7 +1,7 @@
 //* Función para el envio de datos y presentación de los datos en una nueva ventana
 class Formulario {
 		constructor () {
-		this.fForm = document.querySelector("#encuesta"),
+		this.aFormulario = document.querySelector("#formulario"),
 			this.oAddres = document.querySelector("#Correo"),
 			this.oClave1 = document.querySelector("#Clave1"),
 			this.oClave2 = document.querySelector("#Clave2"),
