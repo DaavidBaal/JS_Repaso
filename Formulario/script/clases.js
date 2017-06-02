@@ -1,8 +1,6 @@
-/**
+/**********************************
  * Funcion de validación de claves
- */
-
-window.addEventListener('load', inicio, false);
+ ***********************************/
 
     function inicio() {
         document.getElementById("formulario").addEventListener('submit', validar, false);
@@ -33,9 +31,9 @@ else
 	};
 
 
-/**
+/**********************************
  * Funcion de validación de Nombre
- */
+ *********************************/
 
 function validaNombre()
 {
@@ -69,15 +67,15 @@ else
 		}
 	}
 }
+/***********************************
+ * Funcion de Cambio de Programación
+ ***********************************/
 
 
-/**
- * **********************************************************
- ************************************************************
- */
- // The .bind method from Prototype.js 
-        // Se incorpora el método bind, en caso de que no esté implementado
-        if (!Function.prototype.bind) { // check if native implementation available
+/*********************************************
+ *Funcion de recogida y presentación de datos
+ *********************************************/
+ /
             Function.prototype.bind = function () {
                 var fn = this, args = Array.prototype.slice.call(arguments),
                     object = args.shift();
@@ -138,8 +136,4 @@ else
         } // Fin de la función main()
 
 	    document.addEventListener("DOMContentLoaded", main, false);
-	//metodo de DOM nivel 2  que indica al agente de usuario que permanezca atento:
-	// evento: en este caso la carga completa de la página
-	// función a lanzar: en este caso iniciaBoton
-	// orden del flujo de eventos: false salta la fase de captura
-	 // equivale a  window.onload = iniciaBoton; 	
+	
