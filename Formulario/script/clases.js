@@ -1,129 +1,145 @@
-//* Función para el envio de datos y presentación de los datos en una nueva ventana
-class Formulario  {
-		constructor () {
-		this.aFormulario = document.querySelector("#formulario"),
-			this.oAddres = document.querySelector("#Correo"),
-			this.oClave1 = document.querySelector("#Clave1"),
-			this.oClave2 = document.querySelector("#Clave2"),
-			this.oName = document.querySelector("#Nombre"),
-			this.oApell1 = document.querySelector("#Apellido1"),
-			this.oApell2 = document.querySelector("#Apellido2"),
-			this.aCurso.document.querySelectorAll("[name = Curso]"),
-			this.aFiccion = document.querySelectorAll("[name = aficion]"),
-			this.oParrafo = document.querySelector("#parrafo1"), // referencia del párrafo donde escribir
-			this.aSalida = []
-			
-
-
-			
-		
-		};
-//Inicio de la Función getTextos
- 
-			getTextos() {
-				this.aSalida = [
-					{ etiqueta: "Correo", valor: this.oAddres.value },
-					{ etiqueta: "Clave1", valor: this.oClave1.value },
-					{ etiqueta: "Clave2", valor: this.oClave2.value },
-					{ etiqueta: "Nombre", valor: this.oName.value },
-					{ etiqueta: "Apellido1", valor: this.oApell1.value },
-					{ etiqueta: "Apellido2", valor: this.oApell2.value },
-
-
-				]
-			};
-
-//Fin de la función getTextos
-
 /**
- * Funcion de Fecha actual
+ * Funcion de validación de claves
  */
 
-fechaactual() {
-        let hoy = new Date();
-        let dias = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
-        let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-        document.getElementById("fsFecha").innerHTML = "Hoy es " + " " + dias[hoy.getDay()] + " " + "dia" + " " + hoy.getDate() + " " + "de" + " " + meses[hoy.getMonth()] + " " + "del año" + " " + hoy.getFullYear();
-}
-/**
- * Funcion sacar aficiones
- */
-aFiccion() {
-        let aficiones = ""
-        for (let i = 0; i < this.aFiccion.length; i++) {
-            if (this.aCBox[i].checked) {
-                aficones = aficiones + " " + this.aCBox[i].value + " ,";
-            };
+window.addEventListener('load', inicio, false);
 
-        };
-        this.aSalida[this.aSalida.length] = { etiqueta: "Aficiones", valor: aficiones.slice(0, -1) }
+    function inicio() {
+        document.getElementById("formulario").addEventListener('submit', validar, false);
+    }
 
-    };
-//Fin funcion aficiones
-/**
- * Inicio Funcion select
- */
-	cargarSelect(oDom, aDatos) {
-        oDom.innerHTML = "";
-        for (var i = 0; i < aDatos.length; i++) {
-            oDom.innerHTML += "<option>" + aDatos[i] + "</option>";
-        };
-    };
-    escribeSelect() {
-        var domSelect = oE.currentTarget;
-        if (domSelect.childElementCount > 4) {
-            domSelect.removeChild(domSelect.children[0]);
-        }
-        var nSelect = this.sSelect.options[this.sSelect.selectedIndex];
-        var domOption = domSelect.options[nSelect]
-        this.sSelect = domOption.text;
+    function validar(evt) {
+        let Clave1 = document.getElementById("clave1").value;
+        let Clave2 = document.getElementById("clave2").value;
+       
+	if (   Clave1.value=='' )
+	{
+	alert("No se ha introducido la Clave");
+	errorValidando(document.forms.formulario.Clave1);
+	return false;
+	}
+else
+	{
+
+ 	if ( Clave1.value != Clave2.value )
+		{
+		alert("Las claves deben coincidir");
+		errorValidando(document.forms.formulario.Clave2);
+		return false;
+		}
+ 	else
+		return true;
+		}
 	};
 
 
-//Fin funcion selec	
 /**
- * Funcion de recogida de datos
+ * Funcion de validación de Nombre
  */
-		recogeDatos () {
 
-		
-// Llamada a las funciones get 
-			this.getTextos();
-			this.fechaactual();
-			this.Ficcion();
-			this.escribeDatos ();
-		
-
-// Fin de la funcion recogeDatos
-
-		escribeDatos () 
+function validaNombre()
+{
+if (Nombre.value=='')
+	{
+	alert("Introduzca un Nombre");
+	errorValidando(document.forms.formulario.Nombre);
+	return false;
+	}
+else
+	{
 	
-//ocultar formulario
-			document.querySelector("#formulario").className = "oculto";
-//mostrar bloque div para el resultado
-			document.querySelector("#respuesta").className = "bloque";
-//incorporamos al parrafo cada línea del array		
-			for (var i = 0; i < this.aSalida.length; i++) {
-				this.oParrafo.innerHTML += `<li> ${this.aSalida[i].etiqueta} : </strong> ${this.aSalida[i].valor}</li>
-			`};
-		};// Fin de la funcion escribeDatos
-	 // Fin de la clase formulario
+	if (Apellido1.value=='')
+		{
+		alert("Introduzca su primer Apellido");
+		errorValidando(document.forms.formulario.Apellido1);
+		return false;
+		}
+	else
+		{
+		if (Apellido2.value=='')
+			{
+			alert("Introduzca su segundo Apellido");
+			errorValidando(document.forms.formulario.Apellido2);
+			return false;
+			}
+		else
+			{
+			return true;
+			}
+		}
+	}
+}
 
-	
-		document.addEventListener("DOMContentLoaded", function () {
-			oFormulario = new Formulario;
-       document.getElementById("submit").onclick = oFormulario.recogeDatos.bind(oFormulario);
-		}, false);	
 
-	$(document).ready(function(){
-    $("submit").click(function(event){ event.preventDefault();
-    });
-});
-
-document.getElementById("fechaHoy").innerHTML += fechaActual("Madrid");
 /**
- * *****************************************************************************************************
+ * **********************************************************
+ ************************************************************
  */
-document.getElementById("submit").addEventListener("click", function(){
-    alert("Hello World!");
+ // The .bind method from Prototype.js 
+        // Se incorpora el método bind, en caso de que no esté implementado
+        if (!Function.prototype.bind) { // check if native implementation available
+            Function.prototype.bind = function () {
+                var fn = this, args = Array.prototype.slice.call(arguments),
+                    object = args.shift();
+                return function () {
+                    return fn.apply(object,
+                      args.concat(Array.prototype.slice.call(arguments)));
+                };
+            };
+        }
+		
+	function main() {
+            let oFormulario = {
+                oEvento: {},
+                oDatos: {},
+                oLista: document.getElementById("listaDatos"), // referencia del párrafo donde escribir
+                recogeDatos: function (oE) {
+                    // manejadora del evento submit del formulario:
+                    // disparada sólo despues de la validación HTML5
+                    this.oEvento = oE || window.evnet;
+                    var inputs = document.querySelectorAll("input[type='text']")
+                    for (var i = 0; i < inputs.length; i++) {
+                        this.oDatos[inputs[i].name] = inputs[i].value;
+                    }
+                    this.oDatos.Comentarios = document.getElementById("Comentarios").value;
+                    this.escribeDatos();
+                }, //Fin del método recogeDatos
+                escribeDatos: function () {
+                    //anula el comportamiento por defecto de submit
+                    //incluida la validacion de los requireds
+                    //que ya se ha realizado para poder llegar aqui
+                    this.oEvento.preventDefault();
+                    //ocultar formulario
+                    document.getElementById("formulario").classList.add("oculto")
+                    //mostrar bloque div para el resultado
+                    document.getElementById("resultado").classList.remove("oculto");
+                    // limpiar el nodo <ul> donde se presentarán los datos
+                    this.oLista.innerHTML = "";
+                    //incorporamos a la lista cada elemento del objeto		
+                    for (var i in this.oDatos) {
+                        this.oLista.innerHTML += "<li>" + i + ": <strong>" +
+                            this.oDatos[i] + "</strong></li>";
+                    };
+                }, //Fin del método escribedatos	
+            }; // Fin del objeto oFormulario
+            
+            //document.getElementById("submit").addEventListener("click",
+            //   oFormulario.recogeDatos.bind(oFormulario));
 
+            // En lugar de responder al evento click del boton enviar
+            // Respondemos al evento submit del formulario, 
+            // desencadenado por el boton pero POSTERIOR
+            // al proceso de validación HTML
+
+            document.getElementById('formulario').addEventListener("submit",oFormulario.recogeDatos.bind(oFormulario))
+
+
+                
+        } // Fin de la función main()
+
+	    document.addEventListener("DOMContentLoaded", main, false);
+	//metodo de DOM nivel 2  que indica al agente de usuario que permanezca atento:
+	// evento: en este caso la carga completa de la página
+	// función a lanzar: en este caso iniciaBoton
+	// orden del flujo de eventos: false salta la fase de captura
+	 // equivale a  window.onload = iniciaBoton; 	

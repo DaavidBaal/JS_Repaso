@@ -7,133 +7,141 @@
 	<meta name="description" content="Formulario en JavaScript">
 	<meta name="author" content="David">
 	<link rel="shortcut icon" href="">
-				<!--****Link a CSS*****-->
-  	<link rel="stylesheet" href="css/formulario.css">
-	  			<!--****Link a JavaScript*****-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="script/clases.js"></script>
-<style>
-.display {}
-</style>
+	<!--****Link a CSS*****-->
+	<link rel="stylesheet" href="css/formulario.css">
+	<!--****Link a JavaScript*****-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!--Se incorpora este link para utilizar el metodo bind-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+	<script src="script/clases.js"></script>
 </head>
 
- <body>
-  	<header>
-  		<h1>Formulario con JavaScript</h1>
-	</header>
-	<article>
- 	<form name="formulario" id="formulario"  method="post"  > 
-	<fieldset><legend>Datos del alumno</legend>
-	  	<fieldset class="Izquierda"><legend>Identificación</legend>
-	   		<label for="Correo">
+<body>
+	<div class="container">
+		<header>
+			<h1>Formulario con JavaScript</h1>
+		</header>
+		<article>
+			<form name="formulario" id="formulario" method="post">
+				<fieldset>
+					<legend>Datos del alumno</legend>
+					<fieldset class="Izquierda">
+						<legend>Identificación</legend>
+						<label for="Correo">
 	   			<span class="label">Cuenta de correo</span>
 	    		<input name="Correo" id="Correo" size="30" title="Introduzca su direccionn de correo" type="email" maxlength="50"  placeholder="tucorreo@ejemplo.com" >	
 	   		</label>
-	   		<label for="Clave1">
+						<label for="Clave1">
 	   			<span class="label">Introduzca su clave de acceso</span>
 	    		<input id="Clave1" size="10" maxlenght="10" name="Clave1" type="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,12}$" required/> 
 	   		</label>
-	   		<label for="Clave2">
+						<label for="Clave2">
 	   			<span class="label">Repita la clave de acceso</span>
 	    		<input id="Clave2" size="10" maxlenght="10" name="Clave2" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,12}$" type="password" required/>
 	   		</label>
-	  	</fieldset>
-	  	<fieldset id="fsDatos" class="Derecha"><legend>Datos Personales</legend>
-	   		<label for="Nombre">
+					</fieldset>
+					<fieldset id="fsDatos" class="Derecha">
+						<legend>Datos Personales</legend>
+						<label for="Nombre">
 	   			<span class="label">Nombre</span>
-		    	<input name="Nombre" id="Nombre" size="30" title="Introduzca su nombre" maxlength="40" required/>
+		    	<input type="text" name="Nombre" id="Nombre" size="30" title="Introduzca su nombre" maxlength="40" required/>
 	   		</label>
-	    	<label for="Apellido1">
+						<label for="Apellido1">
 	    		<span class="label">Primer apellido</span>
-		    	<input size="30" maxlength="30" name="Apellido1" id="Apellido1"  required/>
+		    	<input  type="text "size="30" maxlength="30" name="Apellido1" id="Apellido1"  required/>
 					
 	   		</label>
-	    	<label for="Apellido2">
+						<label for="Apellido2">
 	    		<span class="label">Segundo apellido</span>
-		    	<input size="30" maxlength="30" name="Apellido2" id="Apellido2"required />
+		    	<input type="text" size="30" maxlength="30" name="Apellido2" id="Apellido2"required />
 					
 	  		</label>
-	  		<fieldset id="Fecha">
-				  <legend>Fecha de nacimiento</legend>
-                	<input type="date" id="date">	
-	  		</fieldset>
-	 	</fieldset>
-	  	<fieldset id="Curso" class="Izquierda"><legend>Curso</legend>
-	  		<div class="Izquierda">
-		   		<label for="web">
+						<fieldset id="Fecha">
+							<legend>Fecha de nacimiento</legend>
+							<input type="date" id="date">
+						</fieldset>
+					</fieldset>
+					<fieldset id="Curso" class="Izquierda">
+						<legend>Curso</legend>
+						<div class="Izquierda">
+							<label for="web">
 				 	<input type="radio" name="Curso"  id="web" value="web"/>
 					Programador Web</label>
-		     	<label for="sistemas">
+							<label for="sistemas">
 			     	<input type="radio" name="Curso" id="sistemas" value="sistemas" />
-			     	Programador de Sistemas</label>	
-		  		<label for="objeto">
+			     	Programador de Sistemas</label>
+							<label for="objeto">
 			     	<input type="radio" name="Curso" id="objeto" value="objeto" />
 			     	Programador de Objetos</label>
-	  		</div>
-		     <div class="Derecha">
-			     <label>		     	
+						</div>
+						<div class="Derecha">
+							<label>		     	
 			   		<select id="Materias" name="Materias" size="4" > 
 				    	<option value="1">Html</option>
 				    	<option value="2">CSS</option>
 				    	<option value="3">JavaScript</option>
 				    	<option value="4">PHP</option>
 			   		</select>
-			     </label>	
-		     </div>
-	    </fieldset>
-		<fieldset id="aficiones" class="Derecha"><legend>Aficiones</legend>
-		   	<div class="Izquierda">
-			   	<label for="Musica">
+			     </label>
+						</div>
+					</fieldset>
+					<fieldset id="aficiones" class="Derecha">
+						<legend>Aficiones</legend>
+						<div class="Izquierda">
+							<label for="Musica">
 			   	<input type="checkbox" id="Musica" name="Musica" />Música
 				</label>
-				<label for="Viajar">
+							<label for="Viajar">
 				<input class="aficiones" type="checkbox" id="Viajar" name="Viajar" />Viajar
 				 </label>
-				<label for="Pintura">
+							<label for="Pintura">
 				<input class="aficiones" type="checkbox" id="Pintura" name="Pintura" />Pintura </label>
-			    <label for="Foto">
+							<label for="Foto">
 			    <input class="aficiones" type="checkbox" id="Foto" name="Foto" />Fotografía
 			    </label>
-		   	</div>
-		   	<div class="Derecha">
-			   	<label for="Cine">
+						</div>
+						<div class="Derecha">
+							<label for="Cine">
 			   	<input type="checkbox" id="Cine" name="Cine" />Cine
 			   	</label>
-			    <label for="Lectura">
+							<label for="Lectura">
 			    <input class="aficiones" type="checkbox" id="Lectura" name="Lectura" />Lectura
 			    </label>
-			    <label for="Deporte">
+							<label for="Deporte">
 			    <input class="aficiones" type="checkbox" id="Deporte" name="Deporte" />Deporte
 			    </label>
-				<label for="Baile">
+							<label for="Baile">
 				<input class="aficiones" type="checkbox" id="Baile" name="Baile" />Baile
 				</label>
+						</div>
+						<input type="hidden" id="aficion" name="aficion" />
+					</fieldset>
+					<!--fieldset id="fsBotones" class="Izquierda"-->
+					<fieldset name="fset2" class="Izquierda">
+						<p>
+							<label for="submit"></label>
+							<input id="submit" name="submit" type="submit" value="Enviar Datos"> &nbsp;
+							<input id="reset" name="reset" type="reset" value="Borrar">
+						</p>
+					</fieldset>
+					<fieldset id="Fecha" class="Izquierda">
+						<p id="fechaHoy"></p>
+					</fieldset>
+				</fieldset>
+
+			</form>
+			<div id="resultado" class="oculto">
+				<h2>Los datos del usuario son los siguientes</h2>
+				<ul id="listaDatos"> </ul>
 			</div>
-		<input type="hidden" id="aficion" name="aficion" />
-		</fieldset>
-	 	<fieldset id="fsBotones" class="Izquierda">
-                        <input type="submit" name="submit"  class="submit" id="submit" value="Enviar datos" >
-                        <input type="reset" name="borrar" value="Restablecer valores">
+		</article>
 
-	 	</fieldset>
-	 	<fieldset id="Fecha" class="Izquierda">
-	 		<p id="fechaHoy"></p>
-	 	</fieldset>
- 	</fieldset>
-
- 	</form>
-	  <div id="respuesta" class="oculto">
-            <h2 class="oculto">Los datos del usuario son los siguientes</h2>
-            <ul id="parrafo1"> </ul>
-    </div>
- 	</article>
-	
-	<footer>
-		<p>
-			Editado  by Daavid Baal
-		</p>
-	</footer>
-
- </body>
+		<footer>
+			<p>
+				Editado by Daavid Baal
+			</p>
+		</footer>
+	</div>
+</body>
 
 </html>

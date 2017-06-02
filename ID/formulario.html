@@ -8,6 +8,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="image/favicon1.png" sizes="600x600">
     <link href="css/formulario.css" rel="stylesheet">
+    <script>
+  		window.onload = function () {
+  			// se establecen los manejadores de eventos   			
+			document.getElementById("Correo").onchange = function () {
+				actualizarColor(this); todoMinusculas();}; 
+  			document.getElementById("Clave1").onchange =  function () { 
+	    		actualizarColor(this);};
+  			document.getElementById("Clave2").onchange =  function () { 
+	    		actualizarColor(this);};
+  			document.getElementById("Nombre").onchange =  function () {
+  				actualizarColor(this); primeraMayuscula(this);};
+  			document.getElementById("Apellido1").onchange = function () { 
+  				actualizarColor(this); primeraMayuscula(this);};
+  			document.getElementById("Apellido2").onchange =  function () { 
+  				actualizarColor(this); primeraMayuscula(this);};
+  			document.getElementById("dia").onchange =  function () { 
+  				actualizarColor(this);};
+			document.getElementById("mes").onchange =  function () { 
+  				actualizarColor(this);};
+  			document.getElementById("anio").onchange =  function () { 
+  				actualizarColor(this);};
+  			document.getElementById("objeto").onclick =  function () { 
+  				asignaturas(this.value);};
+  			document.getElementById("sistemas").onclick =  function () { 
+  				asignaturas(this.value);};
+  			document.getElementById("web").onclick =  function () { 
+  				asignaturas(this.value);};
+  			document.getElementById("encuesta").onsubmit =  function () { 
+  				recopilaAficiones(); return validaDatos()};
+				/*	si validaDatos() devuelve falso no se ejecuta el submit 
+				 	debido al evento onsubmit. 
+					Debe ser true para el envío
+				*/
+			//se escribe la fecha de hoy
+			document.getElementById("fechaHoy").innerHTML = fechaActual("Madrid");	
+  		}; // Fin de window.onload
+  	</script>
 
 </head>
 

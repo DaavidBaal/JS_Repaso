@@ -1,14 +1,13 @@
 /**********************************************************
-Funciones "externas" invocadas desde el formulario
-en el proceso de validación
+Funciones "externas" invocadas desde el formularioen el proceso de validación
 ***********************************************************/
 function validaDatos()
 {
-if( !validaCorreo() || !validaClave() || !validaNombre() || !validaFecha() )
+if( !validaCorreo() && !validaClave() && !validaNombre() && !validaFecha() )
 	return false;
 else
 	return true;
-//alert("Función validaDatos concluida");
+//Final función validaDatos
 }
 
 function actualizarColor(Elemento)
