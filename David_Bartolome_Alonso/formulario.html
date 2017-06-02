@@ -6,6 +6,7 @@
 	<title>Formularios con JavaScript</title>
 	<meta name="description" content="Formulario en JavaScript">
 	<meta name="author" content="David">
+	<link rel="shortcut icon" href="">
 				<!--****Link a CSS*****-->
   	<link rel="stylesheet" href="css/formulario.css">
 	  			<!--****Link a JavaScript*****-->
@@ -17,7 +18,7 @@
   		<h1>Formulario con JavaScript</h1>
 	</header>
 	<article>
- 	<form name="formulario" id="formulario"  method="post" > 
+ 	<form name="formulario" id="formulario"  method="post"  > 
 	<fieldset><legend>Datos del alumno</legend>
 	  	<fieldset class="Izquierda"><legend>Identificación</legend>
 	   		<label for="Correo">
@@ -36,19 +37,19 @@
 	  	<fieldset id="fsDatos" class="Derecha"><legend>Datos Personales</legend>
 	   		<label for="Nombre">
 	   			<span class="label">Nombre</span>
-		    	<input name="Nombre" id="Nombre" size="30" title="Introduzca su nombre" maxlength="40" />
+		    	<input name="Nombre" id="Nombre" size="30" title="Introduzca su nombre" maxlength="40" required/>
 	   		</label>
 	    	<label for="Apellido1">
 	    		<span class="label">Primer apellido</span>
-		    	<input size="30" maxlength="30" name="Apellido1" id="Apellido1" />
+		    	<input size="30" maxlength="30" name="Apellido1" id="Apellido1"  required/>
 					
 	   		</label>
 	    	<label for="Apellido2">
 	    		<span class="label">Segundo apellido</span>
-		    	<input size="30" maxlength="30" name="Apellido2" id="Apellido2" />
+		    	<input size="30" maxlength="30" name="Apellido2" id="Apellido2"required />
 					
 	  		</label>
-	  		<fieldset id="fsFecha"><legend>Fecha de nacimiento</legend>
+	  		<fieldset id="Fecha"><legend>Fecha de nacimiento</legend>
 	  			<p>
 		    		<label class="line" for="dia">
 		    			<span class="label">Día</span>
@@ -69,7 +70,7 @@
 	   			</p>
 	  		</fieldset>
 	 	</fieldset>
-	  	<fieldset id="fsCurso" class="Izquierda"><legend>Curso</legend>
+	  	<fieldset id="Curso" class="Izquierda"><legend>Curso</legend>
 	  		<div class="Izquierda">
 		   		<label for="web">
 				 	<input type="radio" name="Curso"  id="web" value="web"/>
@@ -123,7 +124,7 @@
 		<input type="hidden" id="aficion" name="aficion" />
 		</fieldset>
 	 	<fieldset id="fsBotones" class="Izquierda">
-                        <input type="submit" name="enviar" id="submit" value="Enviar datos">
+                        <input type="submit" name="enviar"  class="submit" id="submit" value="Enviar datos" >
                         <input type="reset" name="borrar" value="Restablecer valores">
 
 	 	</fieldset>
@@ -134,14 +135,14 @@
 
  	</form>
 	  <div id="respuesta" class="oculto">
-            <h2>Los datos del usuario son los siguientes</h2>
-            <ul id="start"> </ul>
+            <h2 class="oculto">Los datos del usuario son los siguientes</h2>
+            <ul id="parrafo1"> </ul>
     </div>
  	</article>
 	
 	<footer>
 		<p>
-			&copy; Copyright by Daavid Baal
+			Editado  by Daavid Baal
 		</p>
 	</footer>
 

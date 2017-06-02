@@ -1,5 +1,5 @@
 //* Función para el envio de datos y presentación de los datos en una nueva ventana
-class Formulario {
+class Formulario  {
 		constructor () {
 		this.aFormulario = document.querySelector("#formulario"),
 			this.oAddres = document.querySelector("#Correo"),
@@ -10,14 +10,14 @@ class Formulario {
 			this.oApell2 = document.querySelector("#Apellido2"),
 			this.aCurso.document.querySelectorAll("[name = Curso]"),
 			this.aFiccion = document.querySelectorAll("[name = aficion]"),
-			this.oParrafo = document.querySelector("#parrafo_1"), // referencia del párrafo donde escribir
-			this.aSalida = [],
+			this.oParrafo = document.querySelector("#parrafo1"), // referencia del párrafo donde escribir
+			this.aSalida = []
 			
 
 
 			
-
-}
+		
+		};
 //Inicio de la Función getTextos
  
 			getTextos() {
@@ -32,9 +32,9 @@ class Formulario {
 
 				]
 			};
-			
-//Fin de la función getTextos
 
+//Fin de la función getTextos
+};
 /**
  * Funcion de Fecha actual
  */
@@ -44,7 +44,7 @@ fechaactual() {
         let dias = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
         let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
         document.getElementById("fsFecha").innerHTML = "Hoy es " + " " + dias[hoy.getDay()] + " " + "dia" + " " + hoy.getDate() + " " + "de" + " " + meses[hoy.getMonth()] + " " + "del año" + " " + hoy.getFullYear();
-    }
+}
 /**
  * Funcion sacar aficiones
  */
@@ -53,12 +53,12 @@ aFiccion() {
         for (let i = 0; i < this.aFiccion.length; i++) {
             if (this.aCBox[i].checked) {
                 aficones = aficiones + " " + this.aCBox[i].value + " ,";
-            }
+            };
 
-        }
+        };
         this.aSalida[this.aSalida.length] = { etiqueta: "Aficiones", valor: aficiones.slice(0, -1) }
 
-    }
+    };
 //Fin funcion aficiones
 /**
  * Inicio Funcion select
@@ -67,8 +67,8 @@ aFiccion() {
         oDom.innerHTML = "";
         for (var i = 0; i < aDatos.length; i++) {
             oDom.innerHTML += "<option>" + aDatos[i] + "</option>";
-        }
-    }
+        };
+    };
     escribeSelect() {
         var domSelect = oE.currentTarget;
         if (domSelect.childElementCount > 4) {
@@ -87,10 +87,10 @@ aFiccion() {
 		recogeDatos () {
 
 		
-// Llamada a las funciones get de cada conjunto de controles
+// Llamada a las funciones get 
 			this.getTextos();
 			this.fechaactual();
-			this.chbox();
+			this.Ficcion();
 			this.escribeDatos ();
 		};
 
@@ -106,18 +106,17 @@ aFiccion() {
 			for (var i = 0; i < this.aSalida.length; i++) {
 				this.oParrafo.innerHTML += `<li> ${this.aSalida[i].etiqueta} : </strong> ${this.aSalida[i].valor}</li>
 			`};
-		} // Fin de la funcion escribeDatos
-	} // Fin de la clase formulario
+		};// Fin de la funcion escribeDatos
+	 // Fin de la clase formulario
 
 	
 	document.addEventListener("DOMContentLoaded", function () {
 			oFormulario = new Formulario;
   document.getElementById("submit").onclick = oFormulario.recogeDatos.bind(oFormulario);
 		}, false);		
+
+document.getElementById("fechaHoy").innerHTML += fechaActual("Madrid");
 /**
  * *****************************************************************************************************
  */
-
-
-
 

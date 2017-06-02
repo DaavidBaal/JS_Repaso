@@ -31,16 +31,16 @@ legend {
   	float: left; 
   	margin-right: 1%; 
   	clear: left; 
-  	width: 44%  }
+  	width: 40%  }
 
 .Derecha { 
   	float: right;
-  	width: 44% }
+  	width: 40% }
 
 #fsCurso div.Izquierda {width: 60%}
 #fsCurso div.Derecha {width: 30%}
 
-button {  margin-left: 1.5%; }
+.submit {  margin-left: 1.5%; }
 
 .aficiones{ margin-left: 2%;}
 
@@ -57,3 +57,5 @@ span.label {
 input {
 	float: left;
 }
+
+.display 
