@@ -9,7 +9,7 @@ class Formulario {
 			this.oApell1 = document.querySelector("#Apellido1"),
 			this.oApell2 = document.querySelector("#Apellido2"),
 			this.aCurso.document.querySelectorAll("[name = Curso]"),
-			 this.aCBox = document.querySelectorAll("[name = aficion]"),
+			this.aFiccion = document.querySelectorAll("[name = aficion]"),
 			this.oParrafo = document.querySelector("#parrafo_1"), // referencia del párrafo donde escribir
 			this.aSalida = [],
 			
@@ -46,13 +46,13 @@ fechaactual() {
  */
 chBox() {
         let aficiones = ""
-        for (let i = 0; i < this.aCBox.length; i++) {
+        for (let i = 0; i < this.aFiccion.length; i++) {
             if (this.aCBox[i].checked) {
-                aficiones = aficiones + " " + this.aCBox[i].value + " ,";
+                aficones = aficiones + " " + this.aCBox[i].value + " ,";
             }
 
         }
-        this.fSalida[this.fSalida.length] = { etiqueta: "Aficiones", valor: aficiones.slice(0, -1) }
+        this.aSalida[this.aSalida.length] = { etiqueta: "Aficiones", valor: aficiones.slice(0, -1) }
 
     }
 //Fin funcion aficiones

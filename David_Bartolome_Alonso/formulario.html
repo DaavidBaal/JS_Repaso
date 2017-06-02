@@ -6,7 +6,6 @@
 	<title>Formularios con JavaScript</title>
 	<meta name="description" content="Ejercicios del Curso CMF">
 	<meta name="author" content="David">
-  	<link rel="shortcut icon" href="image/fav_icon.png">
 				<!--****Link a CSS*****-->
   	<link rel="stylesheet" href="css/formulario.css">
 	  			<!--****Link a JavaScript*****-->
@@ -23,15 +22,15 @@
 	  	<fieldset class="Izquierda"><legend>Identificación</legend>
 	   		<label for="Correo">
 	   			<span class="label">Cuenta de correo</span>
-	    		<input name="Correo" id="Correo" size="30" title="Introduzca su direccionn de correo" maxlength="50"  placeholder="tucorreo@ejemplo.com" >	
+	    		<input name="Correo" id="Correo" size="30" title="Introduzca su direccionn de correo" type="email" maxlength="50"  placeholder="tucorreo@ejemplo.com" >	
 	   		</label>
 	   		<label for="Clave1">
 	   			<span class="label">Introduzca su clave de acceso</span>
-	    		<input id="Clave1" size="10" maxlenght="10" name="Clave1" type="password" required/> 
+	    		<input id="Clave1" size="10" maxlenght="10" name="Clave1" type="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,12}$" required/> 
 	   		</label>
 	   		<label for="Clave2">
 	   			<span class="label">Repita la clave de acceso</span>
-	    		<input id="Clave2" size="10" maxlenght="10" name="Clave2" type="password" required/>
+	    		<input id="Clave2" size="10" maxlenght="10" name="Clave2" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,12}$" type="password" required/>
 	   		</label>
 	  	</fieldset>
 	  	<fieldset id="fsDatos" class="Derecha"><legend>Datos Personales</legend>
@@ -93,7 +92,7 @@
 			     </label>	
 		     </div>
 	    </fieldset>
-		<fieldset id="fsAficiones" class="Derecha"><legend>Aficiones</legend>
+		<fieldset id="aficiones" class="Derecha"><legend>Aficiones</legend>
 		   	<div class="Izquierda">
 			   	<label for="Musica">
 			   	<input type="checkbox" id="Musica" name="Musica" />Música
