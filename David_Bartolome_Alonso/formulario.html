@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Formularios con JavaScript</title>
+	<meta name="description" content="Ejercicio JavaScript">
+	<meta name="author" content="David">
+	<!--*****Favicon*****-->
+	<link rel="shortcut icon" href="image/lg_favicon.gif">
+	<!--****Link a CSS*****-->
+	<link rel="stylesheet" href="css/formulario.css">
+	<!--****Link a JavaScript*****-->
+	<script src="script/app.js"></script>
+	<script src="script/clases.js">	</script>
+	<script src="script/validacion.js"></script>
+	
+
+</head>
+
+<body>
+	<header>
+		<h1>Formulario con JavaScript</h1>
+	</header>
+	<article>
+		<form name="formulario" id="formulario" method="post" enctype="text/plain">
+			<fieldset>
+				<legend>Datos del alumno</legend>
+				<fieldset class="Izquierda">
+					<legend>Identificación</legend>
+					<label for="Correo">
+	   			<span class="label">Cuenta de correo</span>
+	    		<input name="Correo" id="Correo" size="30" 
+				title="Introduzca su direccion de correo" maxlength="50"  placeholder="tucorreo@ejemplo.com" type="email"required/>	
+	   		</label>
+					<label for="Clave1">
+	   			<span class="label">Introduzca su clave de acceso</span>
+	    		<input id="Clave1" size="10" maxlenght="10" name="Clave1" type="password"  required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"/> 
+	   		</label>
+					<label for="Clave2">
+	   			<span class="label">Repita la clave de acceso</span>
+	    		<input id="Clave2" size="10" maxlenght="10" name="Clave2" type="password" requiredpattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"/>
+	   		</label>
+				</fieldset>
+				<fieldset id="fsDatos" class="Derecha">
+					<legend>Datos Personales</legend>
+					<label for="Nombre">
+	   			<span class="label">Nombre</span>
+		    	<input name="Nombre" id="Nombre" size="30" title="Introduzca su nombre" maxlength="40" required/>
+	   		</label>
+					<label for="Apellido1">
+	    		<span class="label">Primer apellido</span>
+		    	<input size="30" maxlength="30" name="Apellido1" id="Apellido1"  required/>
+					
+	   		</label>
+					<label for="Apellido2">
+	    		<span class="label">Segundo apellido</span>
+		    	<input size="30" maxlength="30" name="Apellido2" id="Apellido2" required/>
+					
+	  		</label>
+					<fieldset id="fsFecha">
+						<legend>Fecha de nacimiento</legend>
+                         <input type="date" id="Fecha" name="Fecha">
+					</fieldset>
+				</fieldset>
+
+				<fieldset id="fsCurso" class="Izquierda">
+					<legend>Curso</legend>
+					<div class="Izquierda">
+						<label for="web">
+				 	<input type="radio" name="Curso"  id="web" checked value="web" />
+					Programador Web</label>
+						<label for="sistemas">
+			     	<input type="radio" name="Curso" id="sistemas" value="sistemas" />
+			     	Programador de Sistemas</label>
+						<label for="objeto">
+			     	<input type="radio" name="Curso" id="objeto" value="objeto" />
+			     	Programador de Objetos</label>
+					</div>
+					<div class="Derecha">
+						<label>		     	
+			   		<select id="Materias" name="Materias" size="4" > 
+				    	<option value="1">Html</option>
+				    	<option value="2">CSS</option>
+				    	<option value="3">JavaScript</option>
+				    	<option value="4">PHP</option>
+			   		</select>
+			     </label>
+					</div>
+				</fieldset>
+				<fieldset id="fsAficiones" class="Derecha">
+					<legend>Aficiones</legend>
+					<div class="Izquierda">
+						<label for="Musica">
+			   	<input type="checkbox" id="Musica" name="Musica" />Música
+				</label>
+						<label for="Viajar">
+				<input class="aficiones" type="checkbox" id="Viajar" name="Viajar" />Viajar
+				 </label>
+						<label for="Pintura">
+				<input class="aficiones" type="checkbox" id="Pintura" name="Pintura" />Pintura </label>
+						<label for="Foto">
+			    <input class="aficiones" type="checkbox" id="Foto" name="Foto" />Fotografía
+			    </label>
+					</div>
+					<div class="Derecha">
+						<label for="Cine">
+			   	<input type="checkbox" id="Cine" name="Cine" />Cine
+			   	</label>
+						<label for="Lectura">
+			    <input class="aficiones" type="checkbox" id="Lectura" name="Lectura" />Lectura
+			    </label>
+						<label for="Deporte">
+			    <input class="aficiones" type="checkbox" id="Deporte" name="Deporte" />Deporte
+			    </label>
+						<label for="Baile">
+				<input class="aficiones" type="checkbox" id="Baile" name="Baile" />Baile
+				</label>
+					</div>
+					<input type="hidden" id="aficion" name="aficion" />
+				</fieldset>
+				<fieldset id="fsBotones" class="Izquierda">
+					<p><label></label>
+						<input type="submit" id="btnSubmit" value="Enviar Datos"> 
+						<input type="reset" id="btnReset" value="Borrar"></p>
+				</fieldset>
+
+
+			</fieldset>
+			 <fieldset id="fsFecha" class="Izquierda">
+	 		<p id="fechaHoy"></p>
+	 	</fieldset>
+		 	</fieldset>
+		
+
+
+		</form>
+
+		<div id="resultado" class="oculto">
+			<h2>Los datos del usuario son los siguientes</h2>
+			<ul id="listaDatos"> </ul>
+		</div>
+		
+	</article>
+
+	<footer>
+		<p>
+			&copy; Copyright by Daavid Baal
+		</p>
+	</footer>
+</body>
+
+</html>
